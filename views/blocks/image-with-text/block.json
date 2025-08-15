@@ -1,0 +1,15 @@
+{
+  "name": "acf/image-with-text",
+  "title": "Image With Text",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "align-pull-left",
+  "keywords": [
+    "magency"
+  ],
+  "style": "file:./block.css",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

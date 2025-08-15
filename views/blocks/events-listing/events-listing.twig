@@ -1,0 +1,26 @@
+<section class="relative z-3 events-listing text-white bg-linear-to-t from-med-blue to-dark-blue py-12 md:py-24 xl:py-32">
+	{{ get_image_html(fields.background_image.id, 'absolute size-full inset-0 object-cover bottom-0 opacity-50 z-1 map-img') }}
+
+	<div class="wrapper gap-8 text-center z-2 relative">
+		<div class="flex flex-col gap-4 mb-12 md:mb-16 xl:mb-24">
+			{% if fields.eyebrow %}
+				<h6 class="h6 text-red">
+					{{ fields.eyebrow }}
+				</h6>
+			{% endif %}
+			{% if fields.heading %}
+				<h2 class="h2">
+					{{ fields.heading}}
+				</h2>
+			{% endif %}
+			{% if fields.subheading %}
+				<div class="wysiwyg font-light w-full md:w-2/3 lg:w-1/2 text-center m-auto">
+					{{ fields.subheading}}
+				</div>
+			{% endif %}
+		</div>
+		<div class="relative z-2 pb-12">
+			{{ function('do_shortcode', '[tribe_events view="list" past="false" tribe-bar="false" filter-bar="false"]') }}
+		</div>
+	</div>
+</section>

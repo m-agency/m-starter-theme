@@ -1,0 +1,16 @@
+{
+  "name": "acf/events-listing",
+  "title": "Events Listing",
+  "description": "A custom events listing block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "",
+  "keywords": [
+    "magency",
+    "events"
+  ],
+  "style": "file:./block.css",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

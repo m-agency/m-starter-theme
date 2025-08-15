@@ -1,0 +1,33 @@
+<section class="wrapper py-12 md:py-24 xl:py-32">
+	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-8 md:gap-12 xl:gap-24">
+		<div class="xl:col-span-7 text-white">
+			<h3 class="h3 mb-6">{{ __('More About This Event', 'magency-theme') }}</h3>
+			<div class="wysiwyg">
+				{{ post.content }}
+			</div>
+			<div class="mt-8 md:mt-12">
+				<a href="/events/" title="Back To All Events" class="btn btn-secondary">
+					Back To All Events
+				</a>
+			</div>
+		</div>
+
+		<div class="xl:col-span-5">
+			<div class="bg-med-blue text-white sticky top-32 p-6">
+				<h4 class="h4 mb-4">{{ __('Event Info', 'magency-theme') }}</h4>
+
+				<div class="flex flex-col divide-y divide-white/50">
+					{% for detail in details %}
+						<div class="flex items-center justify-between gap-2 text-base py-4">
+							<div class="flex items-center gap-2">
+								{% include 'partials/events/icons/' ~ detail.icon ~ '.twig'  %}
+								<span>{{ detail.name }}</span>
+							</div>
+							<div>{{ detail.value }}</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

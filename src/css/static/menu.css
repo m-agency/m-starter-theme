@@ -1,0 +1,116 @@
+header {
+  transform: all.5s;
+}
+header.scrolled {
+  background-color: #030119;
+}
+/* General Menu Styles */
+.menu-theme {
+  .menu-item {
+    @apply text-white;
+
+    a {
+      @apply border-b-2 border-transparent transition-colors duration-300;
+    }
+
+    .submenu {
+      @apply xl:-mt-4;
+    }
+
+    &.current-menu-item {
+      a {
+        @apply border-white;
+      }
+
+      ul a {
+        @apply border-transparent;
+      }
+    }
+  }
+
+  .is-right {
+    .submenu {
+      @apply xl:right-56;
+    }
+
+    .txt {
+      @apply xl:order-2;
+    }
+
+    .icn {
+      @apply xl:order-1;
+    }
+  }
+
+  .is-left {
+    .submenu {
+      @apply xl:left-56;
+    }
+  }
+}
+
+/* Primary Menu */
+.menu-theme--primary {
+  .menu-item {
+    @apply lg:text-white/100;
+    font-family: var(--font-body-bold);
+    a {
+      @apply xl:border-transparent hover:xl:border-red;
+    }
+
+    &.current-menu-item a,
+    &.current-page-ancestor > a {
+      @apply xl:border-secondary;
+      font-weight: 800;
+    }
+
+    ul {
+      @apply xl:bg-secondary xl:border-x xl:border-y-2 xl:border-primary;
+
+      a {
+        @apply xl:text-primary xl:border-transparent hover:xl:border-red;
+      }
+
+      a.current-menu-item {
+        @apply xl:border-primary;
+      }
+    }
+  }
+}
+
+/* Secondary Menu */
+.menu-theme--secondary {
+  @apply bg-secondary;
+
+  .menu-item {
+    a {
+      @apply xl:border-transparent hover:xl:border-primary;
+    }
+
+    &.current-menu-item > a,
+    &.current-page-ancestor > a {
+      @apply xl:border-primary;
+      font-weight: 800;
+    }
+
+    ul {
+      @apply xl:bg-primary xl:border-x xl:border-y-2 xl:border-secondary;
+
+      a {
+        @apply xl:text-secondary xl:border-transparent hover:xl:border-secondary;
+      }
+
+      a.current-menu-item {
+        @apply xl:border-secondary;
+      }
+    }
+  }
+}
+
+/* Footer Menu */
+#footer {
+  .current-menu-item > a,
+  .current-page-item > a {
+    @apply text-white;
+  }
+}

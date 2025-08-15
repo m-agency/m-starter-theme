@@ -1,0 +1,108 @@
+<div
+  class="items-center w-full py-1.5 sm:py-0 bg-red text-lg z-50 relative"
+  x-data="checkOpened"
+  x-init="initializeMe"
+  style=""
+>
+  <div class="wrapper">
+    <div class="flex sm:flex flex-col sm:flex-row justify-between w-full ctn items-center py-1 sm:py-3 align-center">
+      <div class="text-white hidden sm:flex flex-row items-center">
+        {{ options.banner_event.headline }}
+        {% if options.banner_event.button %}
+          <a
+            href="{{ options.banner_event.button.url }}"
+            title="{{ options.banner_event.button.title }}"
+            target="{{ options.banner_event.button.target ? options.banner_event.button.target : '_self' }}"
+            class="btn btn-primary border-white bg-red py-1 px-4 text-white ml-6"
+          >
+            {{ options.banner_event.button.title }}
+          </a>
+        {% endif %}
+      </div>
+      <div class="text-white mb-2 sm:mb-0">
+        We're <strong x-html="currentAvailability"></strong> today <span x-html="hours"></span>
+      </div>
+      <div class="text-white flex sm:hidden flex-row items-center mb-2">
+        {% if options.banner_event.button %}
+          <a
+            href="{{ options.banner_event.button.url }}"
+            title="{{ options.banner_event.button.title }}"
+            target="{{ options.banner_event.button.target ? options.banner_event.button.target : '_self' }}"
+            class="btn btn-primary border-white bg-red py-1 px-4 text-white"
+          >
+            {{ options.banner_event.headline }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function checkOpened() {
+  return {
+    time: '',
+    day: '',
+    hours: '',
+    days: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+    availability: {{ options.business_hours|json_encode() }},
+    currentAvailability: 'we\'re...',
+    opened: true,
+    initializeMe: function() {
+      setInterval(() => {
+        this.getTime();
+      }, 1);
+
+      this.getDay();
+      this.getAvailability();
+
+      setInterval(() => {
+        this.getDay();
+        this.getAvailability();
+      }, 60000);
+    },
+    getTime: function() {
+      let time = new Date();
+      this.time = time.toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+        timeZone: "America/Los_Angeles"
+      });
+    },
+    getDay: function() {
+      let date = new Date();
+      let day = this.days[date.getDay()];
+      this.day = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+    },
+    getAvailability: function() {
+      let day = this.availability[this.day.toLowerCase()];
+      let pass = day.opened;
+      if (!pass) {
+        this.opened = false;
+        this.currentAvailability = 'closed';
+        return;
+      } else {
+        this.currentAvailability = 'open';
+        this.hours = 'from ' + day.start + ' - ' + day.end;
+      }
+
+      let start = day.start;
+      let end = day.end;
+
+      let dt = new Date();
+      let pst = dt.toLocaleString('en-US', {
+        timeZone: 'America/Los_Angeles'
+      });
+      let date = new Date(pst);
+
+      let s = start.split(':');
+      let dt1 = new Date(date.getFullYear(), date.getMonth(), date.getDate(), parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
+
+      let e = end.split(':');
+      let dt2 = new Date(date.getFullYear(), date.getMonth(), date.getDate(),parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
+
+    }
+  };
+}
+</script>

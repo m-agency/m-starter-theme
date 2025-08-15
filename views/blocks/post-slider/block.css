@@ -1,0 +1,22 @@
+.svg-left-parallax {
+  position: fixed;
+  top: 20%;
+  left: 5%;
+  width: 257px;
+  height: 100vh;
+  margin: -75px 0 0 -75px;
+}
+
+.svg-right-parallax {
+  position: fixed;
+  top: 0%;
+  right: 3%;
+  width: 417px;
+  height: 100vh;
+  margin: -75px 0 0 -75px;
+}
+
+.slide-img {
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1) 20%), to(rgba(0, 0, 0, .1)));
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .1));
+}

@@ -1,0 +1,18 @@
+<section class="relative z-10 text-white">
+	<div class="w-full space-y-5" x-data="faq">
+		{% for accordion in fields.accordions %}
+			<div class="border-t border-gray-600 pt-4">
+				<button @click="setOpened({{ loop.index0 }})" class="w-full flex items-center justify-between text-left text-base sm:text-lg font-medium focus:outline-none">
+					<span class="pr-6 md:pr-8 xl:pr-12 block uppercase">{{ accordion.title }}</span>
+					<svg :class="isOpened({{ loop.index0 }}) ? 'transform rotate-180' : ''" class="h-5 w-5 flex-shrink-0 text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+						<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+
+				<div x-show="isOpened({{ loop.index0 }})" x-collapse class="mt-4 wysiwyg text-sm sm:text-base text-white/80 pr-6 md:pr-8 xl:pr-12">
+					{{ accordion.content }}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</section>

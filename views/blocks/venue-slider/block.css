@@ -1,0 +1,15 @@
+#venue-slider {
+  .splide__inner {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .splide__slide:not(.is-active) .splide__inner {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  .splide__slide.is-active .splide__inner {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,96 @@
+<footer id="footer" class="py-12 sm:pt-20 lg:pt-24 bg-primary relative overflow-hidden">
+	<div
+		class="wrapper flex flex-col divide-y z-1 relative" style="border-color: #585858;">
+		<!-- Top Section -->
+		<div class="flex flex-col items-center gap-12 pb-12 md:pb-16 md:gap-6 justify-center md:justify-between md:flex-row border-med-blue">
+			<div>
+				<div class="h3 text-white">
+					{{ options.footer_form_header }}
+				</div>
+				<div class="text-white">
+					{{ options.footer_form_subheader }}
+				</div>
+			</div>
+			<div id="subscription-form" class="w-full flex-1 flex justify-stretch md:justify-end">
+				{{ function('gravity_form', options.footer_form, false, false) }}
+			</div>
+		</div>
+
+		<!-- Middle Section -->
+		<div class="py-12 md:py-16 flex flex-col xl:flex-row border-med-blue gap-6 divide-y sm:divide-x sm:divide-y-0">
+			<div class="flex justify-between flex-col sm:flex-row xl:flex-col gap-x-6 gap-y-12 sm:pr-6 md:pr-12 pb-12 sm:pb-0 text-center sm:text-left items-center md:items-start">
+				<a href="/">
+					{{ get_image_html(options.footer_logo.id, 'w-64 xl:w-80 h-auto max-w-[135px]') }}
+				</a>
+				{% for location in options.footer_locations %}
+					<div class="flex gap-3 flex-1 sm:flex-none min-w-56 h-fit">
+						<div class="text-white flex flex-col gap-2">
+							<h5 class="h5">{{ location.heading }}</h5>
+							<div class="wysiwyg">
+								{{ location.content }}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<nav class="grow">
+				<ul class="flex flex-col sm:flex-row w-full flex-wrap gap-6 justify-between text-white text-center md:text-left">
+					{% for item in footer_menu.items %}
+						<li class="flex flex-col gap-3 flex-1 lg:flex-auto {{ item.classes | join(' ') }}">
+							<a href="{{ item.link }}" target="{{ item.target }}" title="{{ item.title }}" class="">
+								<span class="h5" style="font-size: 20px;">
+									{{ item.title }}
+								</span>
+							</a>
+
+							<!-- Child Menu Items -->
+							{% if item.children %}
+								<ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="flex flex-col gap-2 md:gap-3">
+									{% for child in item.children %}
+										<li class="{{ child.classes | join(' ') }}">
+											<a href="{{ child.link }}" target="{{ child.target }}" title="{{ child.title }}" class="hover:text-primary transition-colors duration-200">
+												{{ child.title }}
+											</a>
+										</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</li>
+					{% endfor %}
+
+					<li class="flex-1">
+						<ul class="flex flex-row 2xl:flex-col gap-2 md:gap-3 text-right justify-center md:justify-end">
+							<li>
+								{% if options.footer_button %}
+									<a href="{{ options.footer_button.url }}" title="{{ options.footer_button.title }}" target="{{ options.footer_button.target ? options.footer_button.target : '_self' }}" class="btn btn-primary">
+										{{ options.footer_button.title }}
+									</a>
+								{% endif %}
+							</li>
+							<li class="flex flex-row items-center justify-end">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewbox="0 0 24 25" fill="none">
+									<path d="M9.36556 11.0708C10.302 12.7175 11.6712 14.0867 13.3179 15.0231L14.2024 13.7848C14.4965 13.3732 15.0516 13.246 15.4956 13.4885C16.9024 14.257 18.4571 14.724 20.0789 14.8524C20.599 14.8936 21 15.3276 21 15.8493V20.3121C21 20.8248 20.6122 21.2544 20.1022 21.3068C19.5723 21.3613 19.0377 21.3887 18.5 21.3887C9.93959 21.3887 3 14.4491 3 5.88867C3 5.35094 3.02742 4.81638 3.08189 4.28643C3.1343 3.77642 3.56394 3.38867 4.07665 3.38867H8.53942C9.0611 3.38867 9.49513 3.78971 9.5363 4.30976C9.66467 5.93155 10.1317 7.48631 10.9002 8.89311C11.1427 9.33707 11.0155 9.89221 10.6039 10.1862L9.36556 11.0708ZM6.84425 10.4139L8.7442 9.05676C8.20547 7.89381 7.83628 6.6605 7.64727 5.38867H5.00907C5.00303 5.55499 5 5.72167 5 5.88867C5 13.3445 11.0442 19.3887 18.5 19.3887C18.667 19.3887 18.8337 19.3857 19 19.3796V16.7414C17.7282 16.5524 16.4949 16.1832 15.3319 15.6445L13.9748 17.5445C13.4258 17.3312 12.8956 17.0802 12.3874 16.7948L12.3293 16.7617C10.3697 15.6474 8.74134 14.019 7.627 12.0594L7.59394 12.0013C7.30849 11.4931 7.05754 10.9629 6.84425 10.4139Z" fill="#EA4B38"/>
+								</svg>
+								<div class="pl-2">{{ options.phone_number }}</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+		<!-- Bottom Section -->
+		<div class="pt-6 md:pt-8">
+			<div class="flex flex-col gap-6 sm:flex-row items-center sm:justify-between">
+				<div class="text-sm text-white">
+					&copy;
+					{{ 'now'|date('Y') }}
+					Ocean5. All rights reserved.
+				</div>
+				<div class="text-sm text-white">
+					<a href="https://whatisyourm.com/" target="_blank" class="link-current">Website by M Agency</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

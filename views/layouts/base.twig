@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+	<head>
+		{% block head %}
+			{% include 'partials/head.twig' %}
+
+			{% block styles %}{% endblock %}
+		{% endblock %}
+	</head>
+
+	<body class="{{ body_class }} h-full overflow-x-hidden">
+		{{ function('wp_body_open') }}
+
+		{% include 'partials/header.twig' %}
+
+		<main id="main">
+			{% block content %}
+				Sorry, no content
+			{% endblock %}
+		</main>
+
+		{% include 'partials/footer.twig' %}
+
+		{{ function('wp_footer') }}
+
+		{% do action('get_footer') %}
+	</body>
+</html>

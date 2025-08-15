@@ -1,0 +1,36 @@
+{% set classes = [
+	'flex gap-4 flex-col sm:flex-row sm:gap-8 lg:gap-10 p-4 sm:p-6 lg:p-8 bg-white rounded-2xl',
+	'transform transition hover:shadow-md hover:-translate-y-0.5'
+] %}
+
+{% if style == 'even' %}
+	{% set classes = classes|merge([
+		'lg:flex-col'
+	]) %}
+{% else %}
+	{% set classes = classes|merge([
+		'sm:items-center'
+	]) %}
+{% endif %}
+
+<a
+	href="{{ item.link.url }}"
+	class="{{ classes|join(' ') }}"
+>
+	<div>
+		{{ get_image_html(item.image.id, 'w-full max-w-sm sm:min-w-64 mx-auto block xl:min-w-80') }}
+	</div>
+	<div>
+		<div class="flex flex-col gap-4">
+			<h4>{{ item.heading }}</h4>
+			<div class="wysiwyg">{{ item.subheading }}</div>
+
+			<span class="flex items-center gap-1 text-green">
+				Read More
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M12.9497 9.40832L8.23303 4.69999C8.15556 4.62188 8.0634 4.55989 7.96185 4.51758C7.8603 4.47527 7.75138 4.45349 7.64137 4.45349C7.53136 4.45349 7.42244 4.47527 7.32089 4.51758C7.21934 4.55989 7.12717 4.62188 7.0497 4.69999C6.89449 4.85613 6.80737 5.06734 6.80737 5.28749C6.80737 5.50764 6.89449 5.71885 7.0497 5.87499L11.1747 10.0417L7.0497 14.1667C6.89449 14.3228 6.80737 14.534 6.80737 14.7542C6.80737 14.9743 6.89449 15.1855 7.0497 15.3417C7.12688 15.4204 7.21892 15.483 7.32048 15.526C7.42204 15.5689 7.53111 15.5912 7.64137 15.5917C7.75162 15.5912 7.86069 15.5689 7.96225 15.526C8.06382 15.483 8.15585 15.4204 8.23303 15.3417L12.9497 10.6333C13.0343 10.5553 13.1018 10.4606 13.148 10.3552C13.1941 10.2497 13.218 10.1359 13.218 10.0208C13.218 9.90574 13.1941 9.7919 13.148 9.68648C13.1018 9.58107 13.0343 9.48636 12.9497 9.40832Z" fill="#84BD28"/>
+				</svg>
+			</span>
+		</div>
+	</div>
+</a>

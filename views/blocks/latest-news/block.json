@@ -1,0 +1,14 @@
+{
+  "name": "acf/latest-news",
+  "title": "Latest News",
+  "description": "A custom latest news block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "admin-post",
+  "keywords": ["magency", "posts", "news"],
+  "style": "file:./block.css",
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

@@ -1,0 +1,134 @@
+/************************************************
+ * WordPress WYSIWYG Edit Output Styling
+************************************************/
+.wysiwyg {
+  @apply flow-root;
+
+  > *:not(:first-child) {
+    @apply mt-4;
+  }
+
+  &.more-space {
+    & > *:not(:first-child) {
+      @apply mt-6;
+    }
+
+    & > * {
+      @apply leading-[160%];
+    }
+  }
+
+  .alignleft {
+    @apply md:mr-4 md:float-left;
+  }
+
+  .alignright {
+    @apply md:ml-4 md:float-right;
+  }
+
+  .read-more {
+    @apply text-primary hover:text-secondary transition-colors duration-200;
+  }
+}
+
+/************************************************
+ * Custom Block Styles
+************************************************/
+.is-style-transparent-fade {
+  @apply relative before:content-normal before:inset-0 before:size-full;
+  @apply before:absolute before:z-0 before:bg-linear-to-t before:from-med-blue;
+  @apply before:via-transparent before:to-transparent before:opacity-70 z-0;
+}
+
+.is-style-full-fade {
+  @apply relative before:content-normal before:inset-0 before:size-full;
+  @apply before:absolute before:z-0 before:bg-linear-to-t before:from-med-blue;
+  @apply before:via-transparent before:to-transparent z-0;
+}
+
+.is-style-wrapper,
+.is-style-wrapper-small,
+.is-style-booking-wrapper {
+  @apply py-12 sm:py-16 lg:py-32;
+  @apply px-4 sm:px-6 lg:px-8 xl:px-24 2xl:px-32;
+
+  .wp-block-group__inner-container {
+    @apply flex flex-col gap-6;
+  }
+}
+
+.is-style-form-wrapper {
+  @apply px-4 py-8 sm:px-8 sm:py-12 lg:px-16 lg:py-20 xl:px-20 xl:py-24;
+  @apply bg-dark-blue/80 text-white backdrop-blur-sm rounded-2xl;
+}
+
+.is-style-wrapper-small {
+  @apply max-w-6xl mx-auto;
+}
+
+.is-style-faded {
+  @apply opacity-50;
+}
+
+.is-style-just-content {
+  @apply flex flex-col gap-6;
+}
+
+/************************************************
+ * Shared WYSIWYG & Block Styles
+************************************************/
+.wysiwyg,
+.is-style-wrapper,
+.is-style-wrapper-small {
+  h1 {
+    @apply h1;
+  }
+
+  h2 {
+    @apply h2;
+  }
+
+  h3 {
+    @apply h3;
+  }
+
+  h4 {
+    @apply h4;
+  }
+
+  h5 {
+    @apply h5;
+  }
+
+  h6 {
+    @apply h6;
+  }
+
+  ul,
+  ol {
+    @apply ml-10;
+
+    li {
+      @apply mb-2;
+    }
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  blockquote {
+    @apply pl-8 border-l-2 border-primary md:text-lg;
+  }
+}
+
+/************************************************
+ * WordPress Block Overrides
+************************************************/
+.wp-block-columns {
+  @apply gap-10 lg:gap-16 xl:gap-24 2xl:gap-32;
+}

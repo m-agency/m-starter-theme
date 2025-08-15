@@ -1,0 +1,17 @@
+{
+  "name": "acf/vertical-tabs",
+  "title": "Vertical Tabs",
+  "description": "A custom FAQ accordions block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "",
+  "keywords": [
+    "magency",
+    "vertical tabs"
+  ],
+  "style": "file:./block.css",
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

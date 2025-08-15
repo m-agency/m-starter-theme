@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #030119;
+  --color-secondary: #40c2cc;
+  --color-dark: #17171c;
+  --color-gray: #393939;
+  --color-dark-gray: #272727;
+  --color-light-blue: #40c2cc;
+  --color-med-blue: #252a69;
+  --color-dark-blue: #030119;
+  --color-red: #ea4b38;
+  --font-body: "Brandon-Grotesque-Regular", sans-serif;
+  --font-body-medium: "Brandon-Grotesque-Medium", sans-serif;
+  --font-body-bold: "Brandon-Grotesque-Bold", sans-serif;
+  --font-headline: "garage-gothic", sans-serif;
+}

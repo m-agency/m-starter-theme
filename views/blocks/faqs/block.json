@@ -1,0 +1,14 @@
+{
+  "name": "acf/faqs",
+  "title": "FAQs",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "format-chat",
+  "keywords": [
+    "magency"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

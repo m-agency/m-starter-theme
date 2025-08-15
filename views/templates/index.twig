@@ -1,0 +1,51 @@
+{% extends 'layouts/base.twig' %}
+{% block content %}
+{{ post.content }}
+
+<section class="bg-white pb-16 sm:pb-24">
+  <div class="wrapper">
+    <div class="flex flex-wrap justify-between items-end gap-8 mb-12 sm:mb-16 lg:mb-24">
+      <div class="flex flex-col gap-6">
+        {% if fields.eyebrow %}
+          <h6 class="h6 text-primary">
+            {{ fields.eyebrow }}
+          </h6>
+        {% endif %}
+
+        {% if fields.heading %}
+          <div class="h2 max-w-4xl">
+            {{ function('do_shortcode', fields.heading) }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if fields.button %}
+          <a
+            href="{{ fields.button.url }}"
+            title="{{ fields.button.title }}"
+            target="{{ fields.button.target ? fields.button.target : '_self' }}"
+            class="btn btn-primary border lg:!px-8 xl:!px-16"
+          >
+            {{ fields.button.title }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 gap-8 lg:gap-12 xl:gap-16"> 
+    {% for post in posts %}
+        {% include ['partials/tease-' ~ post.type ~ '.twig', 'partials/tease.twig'] %}
+    {% endfor %}
+
+    
+    </div>
+    {% include 'partials/pagination.twig' with {
+        pagination: posts.pagination({
+            show_all: false,
+            mid_size: 3,
+            end_size: 2
+        })
+    } %}
+  </div>
+</section>
+{% endblock %}

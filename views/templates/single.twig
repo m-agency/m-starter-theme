@@ -1,0 +1,24 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <article class="post-type-{{ post.type }}" id="post-{{ post.id }}">
+            <section class="article-content">
+                <div class="wrapper w-full sm:w-2/3 m-auto flex flex-col gap-8 py-8 md:py-24 z-10 relative">
+                    <div class="h2 max-w-4xl">{{ post.title }}</div>
+                    <p class="blog-author">
+                        <span>By</span>
+                        <a href="{{ post.author.path }}">{{ post.author.name }}</a>
+                        <span>&bull;</span>
+                        <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+                    </p>
+                    <div class="article-body flex flex-col border-t border-gray pt-6 sm:pt-12">
+                        <div class="wysiwyg sm:text-lg lg:text-xl text-gray">
+                            {{ post.content }}
+                        </div>
+                    </div>
+                </div>    
+            </section>
+        </article>
+    </div>
+{% endblock %}

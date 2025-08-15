@@ -1,0 +1,44 @@
+<section class="{{ fields.background == 'Light' ? 'bg-med-blue' : 'bg-dark-blue' }} relative z-10 text-white py-12 md:py-24 xl:py-32">
+	<div
+		class="wrapper flex flex-col lg:flex-row gap-10 lg:gap-16">
+
+		<!-- Left Side Content -->
+		<div class="w-full flex flex-col gap-2 lg:w-1/2">
+			{% if fields.heading %}
+				<h2 class="h2">
+					{{ fields.heading }}
+				</h2>
+			{% endif %}
+
+			{% if fields.subheading %}
+				<div class="wysiwyg mt-4 text-base sm:text-lg leading-relaxed">
+					{{ fields.subheading }}
+				</div>
+			{% endif %}
+
+			{% if fields.button and fields.button.url %}
+				<a href="{{ fields.button.url }}" title="{{ fields.button.title }}" target="{{ fields.button.target ?: '_self' }}" class="btn btn-primary mt-6">
+					{{ fields.button.title }}
+				</a>
+			{% endif %}
+		</div>
+
+		<!-- Right Side Accordion -->
+		<div class="w-full lg:w-1/2 space-y-5" x-data="faq">
+			{% for faq in get_posts(fields.faqs) %}
+				<div class="border-t border-gray-600 pt-4">
+					<button @click="setOpened({{ loop.index0 }})" class="w-full flex items-center justify-between text-left text-base sm:text-lg font-medium focus:outline-none">
+						<span class="pr-6 md:pr-8 xl:pr-12 block uppercase">{{ faq.title }}</span>
+						<svg :class="isOpened({{ loop.index0 }}) ? 'transform rotate-180' : ''" class="h-5 w-5 flex-shrink-0 text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+							<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</button>
+
+					<div x-show="isOpened({{ loop.index0 }})" x-collapse class="mt-4 wysiwyg text-sm sm:text-base text-white/80 pr-6 md:pr-8 xl:pr-12">
+						{{ faq.content }}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

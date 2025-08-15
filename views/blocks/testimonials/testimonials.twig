@@ -1,0 +1,93 @@
+<section class="relative z-10 bg-primary text-white py-12 md:py-24 xl:py-32 {{ fields.items|length > 3 ? 'testimonials splide' : 'testimonial-list' }}">
+	<div class="wrapper gap-8 text-center">
+		<div class="flex flex-col gap-4 mb-12 md:mb-16 xl:mb-24">
+			{% if fields.eyebrow %}
+				<h6 class="h6 text-red">
+					{{ fields.eyebrow }}
+				</h6>
+			{% endif %}
+			{% if fields.heading %}
+				<h2 class="h2">
+					{{ fields.heading}}
+				</h2>
+			{% endif %}
+			{% if fields.subheading %}
+				<div class="wysiwyg font-light w-full md:w-2/3 lg:w-1/2 text-center m-auto">
+					{{ fields.subheading}}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% if fields.items|length <= 3 %}
+		<div class="flex flex-col md:flex-row gap-6 wrapper bg-primary">
+			{% for item in get_posts(fields.items) %}
+				<div class="w-full md:w-1/3 border border-light-blue rounded-lg text-center">
+					<div class="p-8">
+						<div class="rating text-center mb-8">
+							{% for i in 1..item.rating %}
+								<img class="star inline-block w-5" alt="" src="{{ theme.path ~ '/assets/images/star-icon.svg' }}">
+							{% endfor %}
+						</div>
+						<div class="font-bold italic text-xl">{{ item.comment }}</div>
+						<div class="flex flex-row align-center justify-center mt-8">
+							{{ get_image_html(item.thumbnail.id, 'aspect-square rounded-full object-center w-[56px]') }}
+							<div class="flex flex-col ml-6">
+								<div class="font-bold">{{ item.title}}</div>
+								<div class="">{{ item.description }}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+		<div class="splide__track">
+			<ul class="splide__list">
+				{% for item in get_posts(fields.items) %}
+					<li class="splide__slide border border-light-blue rounded-lg text-center p-8">
+						<div class="rating text-center mb-8">
+							{% for i in 1..item.rating %}
+								<img class="star inline-block" alt="" src="{{ theme.path ~ '/assets/images/star-icon.svg' }}" style="width:20px;">
+							{% endfor %}
+						</div>
+						<div class="font-bold italic text-xl">{{ item.comment }}</div>
+						<div class="flex flex-row align-center justify-center mt-8">
+							<div class="rounded-full size-14 flex items-center justify-center bg-red overflow-hidden">
+								{% if item.thumbnail %}
+									{{ get_image_html(item.thumbnail.id, 'rounded-full object-cover size-14') }}
+								{% else %}
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="size-32 -mb-5" role="img" aria-label="User silhouette" fill="currentColor">
+										<circle cx="12" cy="8" r="4"/>
+										<path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8H4z"/>
+									</svg>
+								{% endif %}
+							</div>
+							<div class="flex flex-col ml-6">
+								<div class="font-bold">{{ item.title}}</div>
+								<div class="">{{ item.description }}</div>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<div class="wrapper flex justify-between items-center mt-8">
+			<ul class="splide__pagination"></ul>
+
+			<div class="splide__arrows relative text-right">
+				<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--prev">
+					<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white"/>
+					</svg>
+				</button>
+				<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--next">
+					<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	{% endif %}
+</section>

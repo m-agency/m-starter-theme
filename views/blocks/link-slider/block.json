@@ -1,0 +1,18 @@
+{
+  "name": "acf/link-slider",
+  "title": "Link Slider",
+  "description": "A custom link slider block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "slides",
+  "keywords": [
+    "magency",
+    "links",
+    "slider"
+  ],
+  "style": "file:./block.css",
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

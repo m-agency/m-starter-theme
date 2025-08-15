@@ -1,0 +1,67 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+	<style type="text/css">
+		.wave-separator {
+			width: 100vw;
+			max-width: 100%;
+			margin-top: calc(clamp(3.125rem, 15vw, 9.375rem) * -1);
+		}
+
+		.waves {
+			position: relative;
+			width: 100%;
+			height: clamp(3.125rem, 15vw, 9.375rem);
+			margin-bottom: -4px;
+		}
+
+		.parallax > use {
+			animation: move-forever 8s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+		}
+
+		@keyframes move-forever {
+			0% {
+				transform: translate3d(-90px, 0, 0);
+			}
+
+			100% {
+				transform: translate3d(85px, 0, 0);
+			}
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	{% include '/partials/events/banner.twig' %}
+
+	{% include '/partials/events/separator.twig' with {
+      color: '--color-dark-blue'
+  } %}
+
+	<div id="learn-more"></div>
+
+	{% include '/partials/events/content.twig' with {
+    details: [
+      {
+        name: __('Date', 'magency-theme'),
+        value: event.start_date|date("F jS, Y"),
+        icon: 'date'
+      },
+      {
+        name: __('Start', 'magency-theme'),
+        value: event.start_date|date("g:i a"),
+        icon: 'time'
+      },
+      {
+        name: __('End', 'magency-theme'),
+        value: event.end_date|date("g:i a"),
+        icon: 'time'
+      },
+      {
+        name: __('Location', 'magency-theme'),
+        value: venue,
+        icon: 'location'
+      }
+    ]
+  } %}
+{% endblock %}

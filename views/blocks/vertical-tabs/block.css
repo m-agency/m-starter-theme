@@ -1,0 +1,65 @@
+section.vertical-tabs {
+	.tab button {
+		background-color: inherit;
+		padding: 22px 18px;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		transition: 0.3s;
+		font-size: 17px;
+		opacity: .6;
+		border: 1px solid transparent;
+	}
+
+	.tab button:hover,
+	.tab button.active {
+		background-color: #14164B;
+		opacity: 1;
+		border: 1px solid #40C2CC;
+
+		img {
+			filter: invert(65%) sepia(91%) saturate(4563%) hue-rotate(161deg) brightness(93%) contrast(107%);
+			opacity: 1;
+		}
+	}
+
+	.waves {
+		position: relative;
+		width: 100%;
+		height: 15vh;
+		margin-bottom: -7px;
+		/*Fix for safari gap*/
+		min-height: 100px;
+		max-height: 150px;
+	}
+
+	.parallax>use {
+		animation: move-forever 8s cubic-bezier(.55, .5, .45, .5) infinite;
+	}
+
+	/*Shrinking for mobile*/
+	@media (max-width: 768px) {
+		.waves {
+			height: 40px;
+			min-height: 40px;
+		}
+
+		.content {
+			height: 30vh;
+		}
+
+		h1 {
+			font-size: 24px;
+		}
+	}
+}
+
+@keyframes move-forever {
+	0% {
+		transform: translate3d(-90px, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(85px, 0, 0);
+	}
+}

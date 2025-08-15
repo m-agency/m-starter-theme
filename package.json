@@ -1,0 +1,44 @@
+{
+  "name": "magency-theme",
+  "version": "1.0.0",
+  "description": "The \"_s\" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your SASS files, scripts, and task runners however you would like!",
+  "main": "index.js",
+  "scripts": {
+    "prettier-format": "prettier --write --ignore-unknown --cache ./src",
+    "css:dev": "npx @tailwindcss/cli -i ./src/css/index.css -o ./assets/styles/theme.css --watch",
+    "css:build": "npx @tailwindcss/cli -i ./src/css/index.css -o ./assets/styles/theme.css --minify",
+    "js:dev": "webpack --config-name general -w",
+    "js:build": "webpack --config-name general:build",
+    "dev": "concurrently \"npm run css:dev\" \"npm run js:dev\"",
+    "build": "npm run js:build && npm run css:build && npm run prettier-format",
+    "editor": "npx @tailwindcss/cli -i ./src/css/editor.css -o ./assets/styles/editor.css --minify",
+    "codesniffer": "./vendor/bin/phpcbf"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alpinejs/collapse": "^3.14.8",
+    "@alpinejs/intersect": "^3.14.8",
+    "@alpinejs/resize": "^3.14.8",
+    "@splidejs/splide": "^4.1.4",
+    "@tailwindcss/cli": "^4.0.6",
+    "alpinejs": "^3.14.8",
+    "simple-parallax-js": "^6.0.1",
+    "tailwindcss": "^4.0.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.8",
+    "@babel/preset-env": "^7.26.8",
+    "@types/alpinejs": "^3.13.11",
+    "@types/alpinejs__collapse": "^3.13.4",
+    "@types/alpinejs__resize": "^3.14.0",
+    "babel-loader": "^9.2.1",
+    "concurrently": "^9.1.2",
+    "css-loader": "^7.1.2",
+    "prettier": "^3.5.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  }
+}

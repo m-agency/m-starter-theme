@@ -1,0 +1,61 @@
+<section class="relative z-0 photo-slider splide bg-med-blue text-white">
+  <!--Waves Container-->
+  <div class="bg-primary">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(37, 42, 105, 1)" />
+      </g>
+    </svg>
+  </div>
+  <!--Waves end-->
+  <div class="py-12 lg:py-32 overflow-hidden">
+    <div class="wrapper gap-8 mb-12 sm:mb-24 text-center">
+      <div class="flex flex-col gap-4">
+        {% if fields.eyebrow %}
+          <h6 class="h6 text-red">
+            {{ fields.eyebrow }}
+          </h6>
+        {% endif %}
+
+        {% if fields.heading %}
+          <h2 class="h2">
+            {{ fields.heading}}
+          </h2>
+        {% endif %}
+        {% if fields.subheading %}
+          <div class="wysiwyg font-light w-full sm:w-2/3 text-center m-auto">
+            {{ fields.subheading}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% for item in fields.items %}
+          <li class="splide__slide flex flex-col gap-4 overflow-hidden">
+            {{ get_image_html(item.image.id, 'w-full aspect-square sm:aspect-[1/1] object-cover object-center') }}
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="splide__arrows relative text-right mt-8 hidden">
+        <button class="rounded-full border border-secondary p-3 m-1 hover:bg-primary transition-colors duration-300 splide__arrow splide__arrow--prev">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white"/>
+          </svg>
+        </button>
+        <button class="rounded-full border border-secondary p-3 m-1 hover:bg-primary transition-colors duration-300 splide__arrow splide__arrow--next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
+          </svg>
+        </button>
+      </div>
+    </div>  
+  </div>
+</section>

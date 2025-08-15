@@ -1,0 +1,59 @@
+<section class="banner relative z-0 bg-primary pt-16 pb-40 sm:py-24">
+  <div class="z-2 absolute h-full w-full top-0" style="background: linear-gradient(0deg,rgba(3, 1, 25, 1) 0%, rgba(3, 1, 25, 0) 33%);"></div>
+  {% if fields.background_video %}
+    <video autoplay muted loop id="bannerVideo" class="w-full z-1 absolute right-0 top-0 opacity-60 object-cover h-full">
+      <source src="{{fields.background_video.url}}" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  {% else %}  
+    {{ get_image_html(fields.background_image.id, 'z-1 absolute right-0 top-0 opacity-60 object-cover h-full') }}
+  {% endif %}
+  <div class="wrapper relative flex flex-col items-center text-center pt-36 z-3">
+    
+      {% if fields.heading %}
+        <h1 class="hxl text-white pb-8 leading-none">
+          {{ function('do_shortcode', fields.heading) }}
+        </h1>
+      {% endif %}
+
+      {% if fields.subheading %}
+        <div class="wysiwyg text-white pb-12">
+          {{ function('do_shortcode', fields.subheading) }}
+        </div>
+      {% endif %}
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {% if fields.button_one %}
+        <a
+          href="{{ fields.button_one.url }}"
+          title="{{ fields.button_one.title }}"
+          target="{{ fields.button_one.target ? fields.button_one.target : '_self' }}"
+          class="btn btn-primary w-full sm:w-auto text-center block sm:flex text-base"
+        >
+          {{ fields.button_one.title }}
+        </a>
+      {% endif %}
+
+      {% if fields.button_two %}
+        <a
+          href="{{ fields.button_two.url }}"
+          title="{{ fields.button_two.title }}"
+          target="{{ fields.button_two.target ? fields.button_two.target : '_self' }}"
+          class="btn btn-secondary w-full sm:w-auto text-center block sm:flex text-base"
+        >
+          {{ fields.button_two.title }}
+        </a>
+      {% endif %}
+    </div>
+    <div class="pt-36 text-center text-white relative">
+      <div class="">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 0C11.7562 0 7.6864 1.68624 4.6864 4.6864C1.6864 7.68656 0 11.7565 0 16C0 20.2435 1.68624 24.3136 4.6864 27.3136C7.68656 30.3136 11.7565 32 16 32C20.2435 32 24.3136 30.3138 27.3136 27.3136C30.3136 24.3134 32 20.2435 32 16C31.995 11.7574 30.3075 7.6912 27.3088 4.6912C24.3088 1.69245 20.2426 0.0048 16 0ZM16 29.5389C12.4099 29.5389 8.9664 28.1126 6.42624 25.5738C3.88749 23.0338 2.46112 19.5901 2.46112 16C2.46112 12.4099 3.88736 8.9664 6.42624 6.42624C8.96624 3.88749 12.4099 2.46112 16 2.46112C19.5901 2.46112 23.0336 3.88736 25.5738 6.42624C28.1125 8.96624 29.5389 12.4099 29.5389 16C29.5339 19.5888 28.1064 23.0301 25.569 25.5686C23.0302 28.1061 19.5888 29.5338 16.0003 29.5386L16 29.5389Z" fill="white"/>
+          <path d="M21.1286 8.10239C21.1286 9.46114 20.0261 10.5636 18.6673 10.5636C17.3073 10.5636 16.2048 9.46114 16.2048 8.10239C16.2048 6.74239 17.3073 5.63989 18.6673 5.63989C20.0261 5.63989 21.1286 6.74239 21.1286 8.10239Z" fill="white"/>
+          <path d="M19.6925 14.7687C19.6925 16.1287 18.59 17.2311 17.2313 17.2311C15.8713 17.2311 14.7688 16.1287 14.7688 14.7687C14.7688 13.4099 15.8713 12.3074 17.2313 12.3074C18.59 12.3074 19.6925 13.4099 19.6925 14.7687Z" fill="white"/>
+          <path d="M26.36 13.4362C26.36 14.7962 25.2575 15.8974 23.8975 15.8974C22.5388 15.8974 21.4363 14.7962 21.4363 13.4362C21.4363 12.0762 22.5388 10.9749 23.8975 10.9749C25.2575 10.9749 26.36 12.0762 26.36 13.4362Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="">scroll down</div>
+    </div>
+  </div>
+</section>

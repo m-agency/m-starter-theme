@@ -1,0 +1,49 @@
+<section id="interior-banner" class="relative py-32 sm:py-40 md:py-48 lg:py-52 xl:py-56 z-10 bg-dark-blue section-style--{{ fields.section_style }}">
+	{% if fields.background_image %}
+		{{ get_image_html(
+      fields.background_image,
+      'z-0 absolute size-full inset-0 object-cover opacity-50 sm:opacity-70'
+    ) }}
+	{% endif %}
+
+	<div class="interior-banner--overlay z-5 absolute inset-0 size-full"></div>
+
+	<div class="interior-banner--waves z-10 absolute bottom-0 left-0 w-full">
+		<div class="bg-transparent">
+			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 24 150 28" preserveaspectratio="none" shape-rendering="auto">
+				<defs>
+					<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+				</defs>
+				<g class="parallax">
+					<use xlink:href="#gentle-wave" x="48" y="7"/>
+				</g>
+			</svg>
+		</div>
+	</div>
+
+	<div class="wrapper relative z-15">
+		<div class="interior-banner--content flex flex-col gap-4 sm:gap-2">
+			{% if fields.heading %}
+				<h2 class="text-white interior-banner--heading">
+					{{ fields.heading }}
+				</h2>
+			{% endif %}
+
+			{% if fields.subheading %}
+				<div class="wysiwyg text-white">
+					{{ fields.subheading }}
+				</div>
+			{% endif %}
+
+			{% if fields.buttons|length > 0 %}
+				<div class="btn-group flex items-center flex-wrap gap-4 mt-8">
+					{% for button in fields.buttons %}
+						<a class="btn {{ loop.index == 1 ? 'btn-primary' : 'btn-secondary'}}" href="{{ button.link.url }}" target="{{ button.link.target ?: '_self'}}" title="{{ button.link.title }}">
+							{{ button.link.title ?: 'Click Here' }}
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

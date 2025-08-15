@@ -1,0 +1,11 @@
+/* TailwindCSS Layers */
+@import "./layers/base.css";
+@import "./layers/components.css";
+@import "./layers/theme.css";
+@import "./layers/utilities.css";
+
+/* Static Styles */
+@import "./static/interaction.css";
+@import "./static/wordpress.css";
+@import "./static/menu.css";
+@import "./static/form.css";

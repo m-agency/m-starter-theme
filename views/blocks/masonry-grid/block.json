@@ -1,0 +1,17 @@
+{
+  "name": "acf/masonry-grid",
+  "title": "Masonry Grid",
+  "description": "A custom masonry grid block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "tagcloud",
+  "keywords": [
+    "magency",
+    "masonry",
+    "grid"
+  ],
+  "style": "file:./block.css",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

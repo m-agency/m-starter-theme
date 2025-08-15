@@ -1,0 +1,83 @@
+<section class="bg-white py-16 sm:py-24 lg:py-32">
+  <div class="wrapper">
+    <div class="flex flex-wrap justify-between items-end gap-8 mb-12 sm:mb-16 lg:mb-24">
+      <div class="flex flex-col gap-6">
+        {% if fields.eyebrow %}
+          <h6 class="h6 text-primary">
+            {{ fields.eyebrow }}
+          </h6>
+        {% endif %}
+
+        {% if fields.heading %}
+          <div class="h2 max-w-4xl">
+            {{ function('do_shortcode', fields.heading) }}
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if fields.button %}
+          <a
+            href="{{ fields.button.url }}"
+            title="{{ fields.button.title }}"
+            target="{{ fields.button.target ? fields.button.target : '_self' }}"
+            class="btn btn-primary border lg:!px-8 xl:!px-16"
+          >
+            {{ fields.button.title }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+      {% set num_posts = 4 %}
+      {% if fields.num_posts %}
+        {% set num_posts = fields.num_posts %}
+      {% endif %}  
+      {% for article in get_posts({ post_type: 'post', posts_per_page:num_posts }) %}
+        <div class="flex flex-col xl:flex-row items-center gap-4 xl:gap-6 2xl:gap-12">
+          <a
+            class="block w-full xl:w-1/2 bg-primary aspect-square relative overflow-hidden"
+            title="View Post"
+            href="{{ article.link }}"
+            x-data="hover"
+            @mouseover="setHover(true)"
+            @mouseleave="setHover(false)"
+          >
+            <span
+              class="transform duration-500 ease-in-out absolute size-full flex items-center justify-center"
+              :class="hover ? 'scale-105' : 'scale-100'"
+            >
+              <span class="relative text-white text-lg sm:text-xl lg:text-2xl">View Post</span>
+              {{ get_image_html(article.thumbnail.id, 'absolute z-10 inset-0 size-full object-cover grayscale') }}    
+            </span>    
+          </a>
+
+          <div class="flex-1 flex flex-col gap-2">
+            <div class="text-sm">{{ article.category }}</div>
+
+            <h5 class="text-xl lg:text-lg xl:text-xl 2xl:text-3xl font-bold">
+              {% if fields.show_date %}
+                <span class="text-sm opacity-60">{{ article.date }}</span>
+              {% endif %}
+
+              {% if fields.show_author %}
+                <span class="text-sm opacity-60">by {{ article.author }}</span>
+              {% endif %}
+              <a href="{{ article.link }}">{{ article.title }}</a>
+            </h5>
+
+            <div class="mb-4">{{ article.excerpt({ words: 12, read_more: '' }) }}</div>
+
+            <div class="font-bold text-sm">{{ article.author }}</div>
+
+            <div class="flex items-center gap-2 text-sm opacity-60">
+              <span>{{ article.date }}</span>
+              <span style="font-size: 0.5rem">&bull;</span>
+              <span>{{ function('do_shortcode', '[rt_reading_time postfix="min" postfix_singular="min" post_id="' ~ article.id ~ '″]') }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<!-- Group posts by menu-category -->
+{% set posts = get_posts(fields.menu_items) %}
+{% set grouped = {} %}
+
+{% for post in posts %}
+	{% set term = post.terms('menu-category') | first %}
+	{% if term %}
+		{% set grouped = grouped | merge({ (term.slug): (grouped[term.slug]|default([])) | merge([post]) }) %}
+	{% endif %}
+{% endfor %}
+
+<!-- Tab Content -->
+{% set tab_slugs = grouped | keys %}
+{% set tab_names = tab_slugs | map((slug) => get_term({'slug': slug, 'taxonomy': 'menu-category'}).name) %}
+
+<script defer>
+	let labels = {{ tab_names | json_encode | raw }};
+</script>
+
+<section class="text-white relative z-10 py-12 md:py-24 xl:py-32 px-4 sm:px-6 lg:px-20 {{ attributes.className }}" x-data="menuTabs()" x-init="setLabels(labels)">
+	<div
+		class="container mx-auto max-w-6xl flex flex-col gap-6 relative z-10">
+
+		<!-- Heading -->
+		{% if fields.heading %}
+			<h2 class="h2 text-center">
+				{{ fields.heading }}
+			</h2>
+		{% endif %}
+
+		<!-- Tab Buttons -->
+		<div class="flex flex-wrap justify-center gap-6 text-sm sm:text-base font-medium mt-6 mb-16 md:mb-20">
+			<template x-for="(label, index) in tabLabels" :key="index">
+				<button @click="activeTab = index" :class="activeTab === index ? 'border-b-2 border-red text-white' : 'text-gray-400 hover:text-white'" class="pb-2 transition uppercase font-bold" x-text="label"></button>
+			</template>
+		</div>
+
+		{% for slug, items in grouped %}
+			<div
+				x-show="activeTab === {{ loop.index0 }}" x-transition>
+				<!-- Header Note -->
+				{% if fields.header_notes[loop.index0] %}
+					<div class="text-center text-base md:text-lg wysiwyg text-white/80 mb-12">
+						{{ fields.header_notes[loop.index0].note }}
+					</div>
+				{% endif %}
+
+				{% for item in items %}
+					<div class="flex items-start justify-between gap-4 py-4 not-last:border-b not-last:border-med-blue">
+						<div class="flex items-center gap-4 md:gap-8 xl:gap-12">
+							{% if item.thumbnail %}
+								<img src="{{ item.thumbnail.src('medium') }}" alt="{{ item.title }}" class="size-14 lg:size-20 shrink-0 rounded bg-gray object-cover"/>
+							{% else %}
+								<div class="size-14 lg:size-20 bg-gray flex items-center justify-center text-sm text-white/80 font-bold rounded shrink-0">
+									FPO
+								</div>
+							{% endif %}
+
+							<div>
+								<p class="text-white h4">{{ item.title }}</p>
+								{% if item.excerpt %}
+									<p class="text-sm text-gray-300 mt-1 leading-snug">
+										{{ item.excerpt({ read_more: false }) }}
+									</p>
+								{% endif %}
+							</div>
+						</div>
+
+						<p class="flex flex-col gap-2 items-end">
+							<span class="text-white h5">${{ item.price }}</span>
+							{% if item.price_note %}
+								<span class="text-sm font-normal italic text-white/80">
+									{{ item.price_note }}
+								</span>
+							{% endif %}
+						</p>
+					</div>
+				{% endfor %}
+
+				<!-- Footer Note -->
+				{% if fields.footer_notes[loop.index0] %}
+					<div class="text-center text-sm text-white/80 mt-12 wysiwyg">
+						{{ fields.footer_notes[loop.index0].note }}
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+</section>

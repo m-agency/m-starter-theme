@@ -1,0 +1,23 @@
+*::-moz-selection {
+  @apply bg-secondary text-white stroke-0;
+}
+
+*::selection {
+  @apply bg-secondary text-white stroke-0;
+}
+
+::-webkit-scrollbar {
+  @apply h-1 w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply shadow-inner;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary transition-colors duration-300;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-secondary;
+}

@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@utility hxl {
+  font-size: 99px;
+  line-height: 120%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h1 {
+  font-size: 99px;
+  line-height: 110%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h2 {
+  font-size: 70px;
+  line-height: 120%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h3 {
+  font-size: 46px;
+  line-height: 120%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h4 {
+  font-size: clamp(20px, 4vw, 32px);
+  line-height: 120%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h5 {
+  font-size: clamp(18px, 4vw, 28px);
+  line-height: 120%;
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+}
+
+@utility h6 {
+  font-size: clamp(14px, 4vw, 16px);
+  line-height: 122%;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-family: var(--font-body-bold);
+}
+
+@utility btn {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border-width: 1px;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  gap: 0.625rem;
+  width: fit-content;
+  font-size: clamp(14px, 4vw, 16px);
+  letter-spacing: 1px;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  text-transform: uppercase;
+  font-family: var(--font-body-medium);
+  transition: all 0.5s;
+  cursor: pointer;
+
+  &.prev:after {
+    display: none;
+  }
+
+  &:hover:after {
+    transform: translateX(0.125rem);
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--color-light-blue);
+  color: black;
+  border-color: var(--color-light-blue);
+
+  &:hover {
+    background-color: var(--color-dark-blue);
+    color: white;
+    border-color: var(--color-light-blue);
+  }
+}
+
+@utility btn-secondary {
+  background-color: transparent;
+  color: white;
+  border-color: var(--color-light-blue);
+
+  &:hover {
+    background-color: var(--color-light-blue);
+    color: black;
+    border-color: var(--color-light-blue);
+  }
+}

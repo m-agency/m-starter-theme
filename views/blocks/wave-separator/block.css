@@ -1,0 +1,26 @@
+.wave-separator {
+  width: 100vw;
+  max-width: 100%;
+  margin-top: calc(clamp(3.125rem, 15vw, 9.375rem) * -1);
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: clamp(3.125rem, 15vw, 9.375rem);
+  margin-bottom: -4px;
+}
+
+.parallax>use {
+  animation: move-forever 8s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}

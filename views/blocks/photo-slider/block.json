@@ -1,0 +1,14 @@
+{
+  "name": "acf/photo-slider",
+  "title": "Photo Slider",
+  "description": "A custom photo slider block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "slides",
+  "keywords": ["magency", "photos", "slider"],
+  "style": "file:./block.css",
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

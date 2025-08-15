@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@layer base {
+  @font-face {
+    font-family: "garage-gothic";
+    src: url("../fonts/GarageGothic_Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  @font-face {
+    font-family: "Brandon-Grotesque-Regular";
+    src: url("../fonts/Brandon_Grotesque_Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Brandon-Grotesque-Regular";
+    src: url("../fonts/Brandon_Grotesque_Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Brandon-Grotesque-Regular";
+    src: url("../fonts/Brandon_Grotesque_Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Brandon-Grotesque-Medium";
+    src: url("../fonts/Brandon_Grotesque_Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Brandon-Grotesque-Bold";
+    src: url("../fonts/Brandon_Grotesque_Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  [x-cloak] {
+    @apply !hidden;
+  }
+
+  main#main {
+    margin-top: -90px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 21px;
+    background-color: var(--color-primary);
+    margin: 0 auto;
+    max-width: 1920px;
+    min-width: 320px;
+    line-height: 1.4em;
+  }
+
+  .bold,
+  strong,
+  b {
+    font-family: var(--font-body-bold);
+  }
+
+  p a {
+    text-decoration: underline !important;
+  }
+
+  .splide__arrow:disabled {
+    background-color: var(--color-dark);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .splide__pagination {
+    gap: 0.25rem;
+
+    .splide__pagination__page {
+      height: 0.5rem;
+      width: 0.5rem;
+      background-color: var(--color-gray-500);
+      border-radius: 9999px;
+      transition: background-color 300ms;
+
+      &.is-active {
+        background-color: var(--color-light-blue);
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+<section
+	class="vertical-tabs relative z-0">
+	<!--Waves Container-->
+	<div class="bg-transparent">
+		<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 24 150 28" preserveaspectratio="none" shape-rendering="auto">
+			<defs>
+				<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+			</defs>
+			<g class="parallax">
+				<use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(37, 42, 105, 1)"/>
+			</g>
+		</svg>
+	</div>
+
+	<!--Waves end-->
+	<div class="py-8 sm:py-18 md:py-35 bg-med-blue">
+		<div class="wrapper gap-8 mb-12 sm:mb-24 text-center">
+			<div class="flex flex-col gap-4">
+				{% if fields.eyebrow %}
+					<h6 class="h6 text-red">
+						{{ fields.eyebrow }}
+					</h6>
+				{% endif %}
+
+				{% if fields.heading %}
+					<h2 class="h2 text-white">
+						{{ fields.heading}}
+					</h2>
+				{% endif %}
+
+				{% if fields.subheading %}
+					<div class="wysiwyg lg:text-lg font-light">
+						{{ fields.subheading}}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="wrapper flex flex-col lg:flex-row relative">
+			<div class="tab min-w-[265px]">
+				{% for tab in fields.tabs %}
+					<button class="tablinks uppercase rounded-lg text-white mt-2 flex flex-row items-center" data-target="{{ tab.tab_name|replace({' ': ''}) }}">
+						<img class="mr-2" src="{{tab.icon}}"/>
+						{{tab.tab_name}}
+					</button>
+				{% endfor %}
+			</div>
+
+			{% for tab in fields.tabs %}
+				<div id="{{tab.tab_name|replace({' ': ''})}}" class="tabcontent py-8 lg:py-2 px-0 lg:px-12 flex flex-col md:flex-row text-white">
+					{{ get_image_html(tab.image.id, 'relative w-full md:w-1/2 aspect-[1/1] rounded-xl object-cover') }}
+					<div class="w-full md:w-1/2 py-12 md:py-0 px-2 md:px-12">
+						<div class="h3 mb-6">{{tab.tab_name}}</div>
+						{{tab.copy}}
+
+						{% if tab.button %}
+							<a href="{{ tab.button.url }}" title="{{ tab.button.title }}" target="{{ tab.button.target ? tab.button.target : '_self' }}" class="btn btn-primary my-8">
+								{{ tab.button.title }}
+							</a>
+						{% endif %}
+
+						{% for link in tab.links %}
+							<a class="uppercase text-md bold flex flex-row items-center mb-4" href="{{link.sublinks.url}}">
+								{{ link.sublinks.title }}
+								<svg class="ml-2" width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M9.70697 16.9496L15.414 11.2426L9.70697 5.53564L8.29297 6.94964L12.586 11.2426L8.29297 15.5356L9.70697 16.9496Z" fill="#40C2CC"/>
+								</svg>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

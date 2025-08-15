@@ -1,0 +1,15 @@
+{
+  "name": "acf/party-packages",
+  "title": "Party Packages",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "smiley",
+  "keywords": [
+    "magency"
+  ],
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

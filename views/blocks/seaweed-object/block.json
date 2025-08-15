@@ -1,0 +1,16 @@
+{
+  "name": "acf/seaweed-object",
+  "title": "Seaweed Object",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "admin-customizer",
+  "keywords": [
+    "magency"
+  ],
+  "style": "file:./block.css",
+  "script": "file:./block.js",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

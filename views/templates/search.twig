@@ -1,0 +1,30 @@
+{# see `templates/archive.twig` for an alternative strategy of extending templates #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+		<div class="pt-6 md:col-span-2 lg:col-span-1 xl:col-span-2">
+			<h2>{{ title }}</h2>
+		</div>
+
+		{% if posts|length > 0 %}
+			{% for post in posts %}
+				{% include 'partials/tease.twig' %}
+			{% endfor %}
+		{% else %}
+			<div class="md:col-span-2 lg:col-span-1 xl:col-span-2">
+				<div>Nothing found!</div>
+			</div>
+		{% endif %}
+
+		<div class="pt-6 md:col-span-2 lg:col-span-1 xl:col-span-2">
+			{% include 'partials/pagination.twig' with {
+				pagination: posts.pagination({
+					show_all: false,
+					mid_size: 3,
+					end_size: 2
+				})
+			} %}
+		</div>
+	</div>
+{% endblock %}

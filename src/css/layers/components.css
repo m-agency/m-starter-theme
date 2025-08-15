@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@layer components {
+  /**********************************************
+   * Large Content Wrapper Component
+   *********************************************/
+  .wrapper {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-24 2xl:px-32;
+  }
+
+  .wrapper-left {
+    @apply pl-4 sm:pl-6 lg:pl-8 xl:pl-24 2xl:pl-32;
+  }
+
+  .wrapper-right {
+    @apply pr-4 sm:pr-6 lg:pr-8 xl:pr-24 2xl:pr-32;
+  }
+
+  /**********************************************
+   * Link Component
+   *********************************************/
+  .link {
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid currentColor;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    padding-bottom: 0.25rem;
+
+    &:after {
+      content: var(--tw-content);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-image: url("../images/arrow-right-dark.svg");
+      display: inline-block;
+      height: 0.88rem;
+      width: 1.375rem;
+      transition: transform 200ms;
+    }
+
+    &:hover:after {
+      transform: translateX(0.125rem);
+    }
+  }
+
+  .link-light:after {
+    background-image: url("../images/arrow-right-light.svg");
+  }
+}

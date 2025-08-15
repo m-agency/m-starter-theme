@@ -1,0 +1,15 @@
+{
+  "name": "acf/interior-banner",
+  "title": "Interior Banner",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "cover-image",
+  "keywords": [
+    "magency"
+  ],
+  "style": "file:./block.css",
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

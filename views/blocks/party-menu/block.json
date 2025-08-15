@@ -1,0 +1,14 @@
+{
+  "name": "acf/party-menu",
+  "title": "Party Menu",
+  "description": "A custom block built for the M Agency theme.",
+  "category": "M-blocks",
+  "icon": "food",
+  "keywords": [
+    "magency"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderCallback": "m_block_renderer"
+  }
+}

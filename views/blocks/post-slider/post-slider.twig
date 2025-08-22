@@ -1,15 +1,15 @@
 <section id="post-slider" class="relative z-0 post-slider splide text-white py-12 lg:py-32 {{ fields.internal_page ? 'bg-med-blue' : 'bg-transparent' }}">
 	{% if fields.internal_page != true %}
-		<div class="svg-left-parallax absolute max-w-1/6 bottom-1/2 left-0 xl:left-5 hidden lg:block">
-			<img class="svg-left w-64 max-w-full h-auto" src="{{ theme.path }}/assets/images/seaweed-left.png" alt="Background seaweed graphic.">
+		<div class="absolute left-0 hidden svg-left-parallax max-w-1/6 bottom-1/2 xl:left-5 lg:block">
+			<img class="w-64 h-auto max-w-full svg-left" src="{{ theme.path }}/assets/images/seaweed-left.png" alt="Background seaweed graphic.">
 		</div>
 
-		<div class="svg-right-parallax absolute max-w-1/4 bottom-1/2 right-0 hidden lg:block">
-			<img class="svg-right w-96 max-w-full h-auto" src="{{ theme.path }}/assets/images/seaweed-right.png" alt="Background seaweed graphic.">
+		<div class="absolute right-0 hidden svg-right-parallax max-w-1/4 bottom-1/2 lg:block">
+			<img class="h-auto max-w-full svg-right w-96" src="{{ theme.path }}/assets/images/seaweed-right.png" alt="Background seaweed graphic.">
 		</div>
 	{% endif %}
 
-	<div class="wrapper gap-8 mb-12 sm:mb-24 text-center z-2 relative">
+	<div class="relative gap-8 mb-12 text-center wrapper sm:mb-24 z-2">
 		<div class="flex flex-col gap-4">
 			{% if fields.eyebrow %}
 				<h6 class="h6 text-red">
@@ -23,7 +23,7 @@
 				</h2>
 			{% endif %}
 			{% if fields.subheading %}
-				<div class="wysiwyg md:w-2/3 lg:w-1/2 sm:text-lg lg:text-xl text-center m-auto">
+				<div class="m-auto text-center wysiwyg md:w-2/3 lg:w-1/2 sm:text-lg lg:text-xl">
 					{{ fields.subheading}}
 				</div>
 			{% endif %}
@@ -33,31 +33,35 @@
 	<div class="splide__track">
 		<ul class="splide__list">
 			{% for item in get_posts(fields.items) %}
-				<li class="splide__slide flex flex-col gap-4 rounded-lg overflow-hidden border border-secondary bg-primary">
+				<li class="relative flex flex-col gap-4 overflow-hidden border rounded-lg splide__slide border-secondary bg-primary">
 					{{ get_image_html(item.thumbnail.id, 'w-full aspect-square sm:aspect-[3/4] object-cover object-center z-0 slide-img') }}
 					<div class="absolute inset-0 size-full bg-linear-to-t from-dark-blue to-transparent z-1"></div>
 
-					<div class="absolute p-8 bottom-0 z-2">
-						<h4 class="h4 mb-4">{{ item.title}}</h4>
+					<div class="absolute bottom-0 p-8 z-2">
+						<h4 class="mb-4 h4">{{ item.title}}</h4>
 						{% if item.excerpt %}
-							<div class="sm:pr-6 lg:pr-12 text-sm sm:text-base lg:text-lg">{{ item.excerpt({ read_more: '' }) }}</div>
+							<div class="text-sm sm:pr-6 lg:pr-12 sm:text-base lg:text-lg">{{ item.excerpt({ read_more: '' }) }}</div>
 						{% endif %}
 					</div>
+
+					{% if item.meta('link') %}
+						<a href="{{ item.meta('link').url }}" title="{{ item.meta('link').title }}" target="{{ item.meta('link').target ?: '_self' }}" class="absolute inset-0 z-10 w-full h-full"></a>
+					{% endif %}
 				</li>
 			{% endfor %}
 		</ul>
 	</div>
 
-	<div class="wrapper flex justify-between items-center mt-8">
+	<div class="flex items-center justify-between mt-8 wrapper">
 		<ul class="splide__pagination"></ul>
 
-		<div class="splide__arrows relative text-right">
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--prev">
+		<div class="relative text-right splide__arrows">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--prev">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white"/>
 				</svg>
 			</button>
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--next">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--next">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
 				</svg>

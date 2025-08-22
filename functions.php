@@ -20,6 +20,6 @@ require_once __DIR__ . '/src/utilities/shortcodes.php';
 
 Timber::init();
 
-define('M_VERSION', '0.0.11');
+define('M_VERSION', '0.1.0');
 
 new M();

@@ -145,6 +145,10 @@
   @apply gap-10 lg:gap-16 xl:gap-24 2xl:gap-32;
 }
 
+.wp-block-group__inner-container {
+  @apply relative z-10;
+}
+
 /************************************************
  * General Styling Patches
 ************************************************/

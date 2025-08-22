@@ -12,6 +12,7 @@ import { hover } from "./data/hover";
 import { separator } from "./data/separator";
 import { tabs } from "./data/tabs";
 import { menuTabs } from "./data/menuTabs";
+import { availabilityData } from "./data/availability";
 
 window.Alpine = Alpine;
 
@@ -26,6 +27,7 @@ Alpine.data("hover", hover);
 Alpine.data("separator", separator);
 Alpine.data("tabs", tabs);
 Alpine.data("menuTabs", menuTabs);
+Alpine.data("availability", availabilityData);
 
 Alpine.start();
 

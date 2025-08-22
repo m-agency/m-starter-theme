@@ -53,6 +53,10 @@ class Actions
 
 		wp_enqueue_style('magency-theme', "$path/assets/styles/theme.css", [], $ver, 'all');
 		wp_enqueue_script('magency-theme', "$path/assets/scripts/theme.js", [], $ver, ['in_footer' => true]);
+
+		wp_localize_script('magency-theme', 'post', [
+			'title' => get_the_title()
+		]);
 	}
 
 	/**
@@ -116,7 +120,6 @@ class Actions
 				['wrapper', __('Wrapper', 'magency-theme')],
 				['wrapper-small', __('Wrapper (small)', 'magency-theme')],
 				['form-wrapper', __('Form Wrapper', 'magency-theme')],
-				['full-fade', __('Full Fade', 'magency-theme')],
 				['booking-wrapper', __('Booking Wrapper', 'magency-theme')],
 				['just-content', __('Just Content', 'magency-theme')]
 			]
@@ -125,6 +128,7 @@ class Actions
 		$this->register_style_for_blocks([
 			'blocks' => [
 				'core/group',
+				'core/cover',
 				'acf/image-with-text',
 				'acf/link-slider',
 				'acf/party-menu'

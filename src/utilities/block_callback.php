@@ -11,13 +11,15 @@
  *
  * @return void
  */
-function m_block_renderer( $attributes, $content = '', $is_preview = false, $post_id = 0, $wp_block = null ) {
-	$slug    = str_replace( 'acf/', '', $attributes['name'] );
+function m_block_renderer($attributes, $content = '', $is_preview = false, $post_id = 0, $wp_block = null)
+{
+	$slug    = str_replace('acf/', '', $attributes['name']);
 	$context = Timber::context();
 
 	$context['attributes'] = $attributes;
 	$context['fields']     = get_fields();
 	$context['is_preview'] = $is_preview;
+	$context['anchor']     = isset($attributes['anchor']) ? "id='{$attributes['anchor']}'" : '';
 
 	Timber::render(
 		'blocks/' . $slug . '/' . $slug . '.twig',

@@ -92,10 +92,13 @@ export class BookingCompanion {
 
     $rows.html("");
 
+    let pack = "";
     if (this.package) {
-      const pack = this.createBookingRow("Package", this.package);
-      $rows.append(pack);
+      pack = this.createBookingRow("Package", this.package);
+    } else {
+      pack = this.createBookingRow("Event Type", window.post.title);
     }
+    $rows.append(pack);
 
     if (this.date && this.time && this.year) {
       const dateTime = `${this.date}, ${this.year} ${this.time}`;
@@ -158,10 +161,13 @@ export class BookingCompanion {
 
     const $resourceCtn = $(".gfield--type-gpb_resource");
 
-    if ($resourceCtn.length > 0) {
-      const selectedPackage = $resourceCtn.find("select option:selected");
-      this.setPackage(selectedPackage.text());
+    if ($resourceCtn.length < 1) {
+      this.update();
+      return;
     }
+
+    const selectedPackage = $resourceCtn.find("select option:selected");
+    this.setPackage(selectedPackage.text());
 
     const $resourceSelect = $resourceCtn.find("select");
 

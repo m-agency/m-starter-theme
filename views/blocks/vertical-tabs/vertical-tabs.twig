@@ -29,7 +29,7 @@
 				{% endif %}
 
 				{% if fields.subheading %}
-					<div class="wysiwyg lg:text-lg font-light">
+					<div class="wysiwyg sm:text-lg lg:text-xl">
 						{{ fields.subheading}}
 					</div>
 				{% endif %}
@@ -39,8 +39,8 @@
 		<div class="wrapper flex flex-col lg:flex-row relative">
 			<div class="tab min-w-[265px]">
 				{% for tab in fields.tabs %}
-					<button class="tablinks uppercase rounded-lg text-white mt-2 flex flex-row items-center" data-target="{{ tab.tab_name|replace({' ': ''}) }}">
-						<img class="mr-2" src="{{tab.icon}}"/>
+					<button class="tablinks uppercase rounded-lg text-white mt-2 gap-3 flex flex-row items-center" data-target="{{ tab.tab_name|replace({' ': ''}) }}">
+						<img class="shrink-0" src="{{tab.icon}}"/>
 						{{tab.tab_name}}
 					</button>
 				{% endfor %}
@@ -50,11 +50,14 @@
 				<div id="{{tab.tab_name|replace({' ': ''})}}" class="tabcontent py-8 lg:py-2 px-0 lg:px-12 flex flex-col md:flex-row text-white">
 					{{ get_image_html(tab.image.id, 'relative w-full md:w-1/2 aspect-[1/1] rounded-xl object-cover') }}
 					<div class="w-full md:w-1/2 py-12 md:py-0 px-2 md:px-12">
-						<div class="h3 mb-6">{{tab.tab_name}}</div>
-						{{tab.copy}}
+						<div class="h3 mb-3">{{ tab.tab_name }}</div>
+
+						<div class="wysiwyg sm:text-lg">
+							{{ tab.copy }}
+						</div>
 
 						{% if tab.button %}
-							<a href="{{ tab.button.url }}" title="{{ tab.button.title }}" target="{{ tab.button.target ? tab.button.target : '_self' }}" class="btn btn-primary my-8">
+							<a href="{{ tab.button.url }}" title="{{ tab.button.title }}" target="{{ tab.button.target ? tab.button.target : '_self' }}" class="btn btn-primary mt-8 mb-10">
 								{{ tab.button.title }}
 							</a>
 						{% endif %}

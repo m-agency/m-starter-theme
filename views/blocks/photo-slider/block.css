@@ -1,65 +1,69 @@
 section.photo-slider {
-		
-	display:flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    .splide__track::before{
-      content: "";
-      right : -10px ; 
-      left : -10px ;
-      top : -5.5rem;
-      height : 10rem;
-      background : #252A69 ;
-      position: absolute;
-      z-index : 999;
-      border-radius: 51% 49% 48% 52% / 49% 50%     50% 51% 
+  .splide__track::before {
+    content: "";
+    right: -10px;
+    left: -10px;
+    top: -5.5rem;
+    height: 10rem;
+    background: #252A69;
+    position: absolute;
+    z-index: 999;
+    border-radius: 51% 49% 48% 52% / 49% 50% 50% 51%
+  }
+
+
+  .splide__track::after {
+    content: "";
+    right: -20px;
+    left: -20px;
+    bottom: -6rem;
+    height: 10rem;
+    background: #252A69;
+    position: absolute;
+    z-index: 999;
+    border-radius: 51% 49% 48% 52% / 49% 50% 50% 51%
+  }
+
+  .waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px;
+    /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+  }
+
+  .parallax>use {
+    animation: move-forever 8s cubic-bezier(.55, .5, .45, .5) infinite;
+  }
+
+  /*Shrinking for mobile*/
+  @media (max-width: 768px) {
+    .waves {
+      height: 40px;
+      min-height: 40px;
     }
 
-
-    .splide__track::after{
-      content: "";
-      right : -20px ; 
-      left : -20px ;
-      bottom : -6rem;
-      height : 10rem;
-      background : #252A69 ;
-      position: absolute ;
-      z-index : 999;
-      border-radius: 51% 49% 48% 52% / 49% 50%     50% 51% 
+    .content {
+      height: 30vh;
     }
 
-	.waves {
-		position:relative;
-		width: 100%;
-		height:15vh;
-		margin-bottom:-7px; /*Fix for safari gap*/
-		min-height:100px;
-		max-height:150px;
-	}
-	.parallax > use {
-		animation: move-forever 8s cubic-bezier(.55,.5,.45,.5)     infinite;
-	}
-	
-	/*Shrinking for mobile*/
-	@media (max-width: 768px) {
-		.waves {
-		height:40px;
-		min-height:40px;
-		}
-		.content {
-		height:30vh;
-		}
-		h1 {
-		font-size:24px;
-		}
-	}  
+    h1 {
+      font-size: 24px;
+    }
+  }
 }
 
 @keyframes move-forever {
-    0% {
-    transform: translate3d(-90px,0,0);
-    }
-    100% { 
-      transform: translate3d(85px,0,0);
-    }
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
 }

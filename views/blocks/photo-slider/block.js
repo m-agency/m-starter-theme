@@ -2,7 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const initializeBlock = () => {
     if (document.querySelector('.photo-slider') === null) return;
     const slider = new window.splide('.photo-slider', {
+      type: 'loop',
+      autoplay: true,
+      speed: 5000,
+      interval: 5000,
+      perMove: 1,
+      easing: 'linear',
       perPage: 3,
+      pagination: false,
+      pauseOnHover: false,
       padding: {
         left: 128,
         right: 300
@@ -39,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-    
+
     slider.mount();
   };
 

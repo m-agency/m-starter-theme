@@ -1,4 +1,5 @@
 <?php
+
 /**
  * View: List Single Event Description
  *
@@ -16,10 +17,10 @@
  * @see tribe_get_event() For the format of the event object.
  */
 
-if ( empty( (string) $event->excerpt ) ) {
+if (empty((string) $event->excerpt)) {
 	return;
 }
 ?>
-<div class="tribe-events-calendar-list__event-description text-white text-left">
+<div class="tribe-events-calendar-list__event-description text-white text-left sm:text-lg">
 	<?php echo (string) $event->excerpt; ?>
 </div>

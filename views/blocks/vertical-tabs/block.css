@@ -6,7 +6,8 @@ section.vertical-tabs {
 		text-align: left;
 		cursor: pointer;
 		transition: 0.3s;
-		font-size: 17px;
+		font-weight: 500;
+		font-size: clamp(1rem, 8vw, 1.125rem);
 		opacity: .6;
 		border: 1px solid transparent;
 	}
@@ -46,10 +47,6 @@ section.vertical-tabs {
 
 		.content {
 			height: 30vh;
-		}
-
-		h1 {
-			font-size: 24px;
 		}
 	}
 }

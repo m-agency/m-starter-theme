@@ -1,28 +1,32 @@
-<section id="image-with-text" class="py-8 md:py-16 xl:py-24 relative z-10 bg-transparent image-position--{{ fields.image_right ? 'right' : 'left' }} {{ attributes.className }}">
-	<div class="wrapper flex flex-col md:flex-row items-center gap-6 md:gap-12 xl:gap-24 relative z-10">
-		<div class="section-image relative md:basis-1/2">
+<section {{ anchor }} class="acf-image-with-text py-8 md:py-16 xl:py-24 relative z-10 bg-transparent image-position--{{ fields.image_right ? 'right' : 'left' }} {{ attributes.className }}">
+	<div class="relative z-10 flex flex-col items-center gap-6 wrapper md:flex-row md:gap-12 xl:gap-24">
+		<div class="relative section-image md:basis-1/2">
 			{{ get_image_html(fields.image, 'w-full object-cover aspect-square max-h-[680px] section-image--img') }}
 		</div>
 
-		<div class="section-content flex flex-col justify-center md:basis-1/2 gap-3 py-6 lg:py-24">
+		<div class="flex flex-col justify-center gap-3 py-6 section-content md:basis-1/2 lg:py-24">
 			{% if fields.heading %}
-				<h2 class="text-white h3">
+				<h2 class="text-white h2">
 					{{ fields.heading }}
 				</h2>
 			{% endif %}
 
 			{% if fields.subheading %}
-				<div class="wysiwyg text-white">
+				<div class="text-white wysiwyg sm:text-lg lg:text-xl">
 					{{ fields.subheading }}
 				</div>
 			{% endif %}
 
 			{% if fields.buttons|length > 0 %}
-				<div class="btn-group flex items-center flex-wrap gap-4 mt-6">
+				<div class="flex flex-wrap items-center gap-4 mt-6 btn-group">
 					{% for button in fields.buttons %}
-						<a class="btn {{ loop.index == 1 ? 'btn-primary' : 'btn-secondary'}}" href="{{ button.link.url }}" target="{{ button.link.target ?: '_self'}}" title="{{ button.link.title }}">
-							{{ button.link.title ?: 'Click Here' }}
-						</a>
+						{% if button.tock %}
+
+							{% else %}
+								<a class="btn {{ loop.index == 1 ? 'btn-primary' : 'btn-secondary'}}" href="{{ button.link.url }}" target="{{ button.link.target ?: '_self'}}" title="{{ button.link.title }}">
+									{{ button.link.title ?: 'Click Here' }}
+								</a>
+						{% endif %}
 					{% endfor %}
 				</div>
 			{% endif %}

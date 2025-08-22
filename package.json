@@ -22,10 +22,10 @@
     "@alpinejs/intersect": "^3.14.8",
     "@alpinejs/resize": "^3.14.8",
     "@splidejs/splide": "^4.1.4",
-    "@tailwindcss/cli": "^4.0.6",
+    "@tailwindcss/cli": "^4.1.12",
     "alpinejs": "^3.14.8",
     "simple-parallax-js": "^6.0.1",
-    "tailwindcss": "^4.0.6"
+    "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
     "@babel/core": "^7.26.8",

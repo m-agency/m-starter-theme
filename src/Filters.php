@@ -177,4 +177,30 @@ class Filters
 
 		return $form;
 	}
+
+	public function filter_tribe_all_occurences($wp_query)
+	{
+
+
+
+		$new_meta = array();
+		$today = new DateTime();
+
+		// Join with existing meta_query
+		if (is_array($wp_query->meta_query))
+			$new_meta = $wp_query->meta_query;
+
+		// Add new meta_query, select events ending from now forward
+		$new_meta[] = array(
+			'key' => '_EventEndDate',
+			'type' => 'DATETIME',
+			'compare' => '>=',
+			'value' => $today->format('Y-m-d H:i:s')
+		);
+
+		$wp_query->set('meta_query', $new_meta);
+
+
+		return $wp_query;
+	}
 }

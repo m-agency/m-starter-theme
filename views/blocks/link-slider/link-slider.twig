@@ -1,5 +1,5 @@
-<section id="link-slider" class="relative z-10 link-slider splide bg-transparent text-white py-12 lg:py-32 {{ attributes.className }}">
-	<div class="wrapper gap-8 mb-12 sm:mb-24 text-center z-2 relative">
+<section {{ anchor }} class="relative z-10 acf-link-slider splide bg-transparent text-white py-12 lg:py-32 {{ attributes.className }}">
+	<div class="relative gap-8 mb-12 text-center wrapper sm:mb-24 z-2">
 		<div class="flex flex-col gap-4">
 			{% if fields.eyebrow %}
 				<h6 class="h6 text-red">
@@ -14,7 +14,7 @@
 			{% endif %}
 
 			{% if fields.subheading %}
-				<div class="wysiwyg md:w-2/3 lg:w-1/2 font-light text-center m-auto">
+				<div class="m-auto text-center wysiwyg md:w-2/3 lg:w-1/2 sm:text-lg lg:text-xl">
 					{{ fields.subheading}}
 				</div>
 			{% endif %}
@@ -24,7 +24,7 @@
 	<div class="splide__track">
 		<ul class="splide__list">
 			{% for item in fields.items %}
-				<li class="splide__slide flex flex-col gap-4 rounded-lg overflow-hidden relative border border-secondary bg-primary" x-data="hover" @mouseover="setHover(true)" @mouseleave="setHover(false)">
+				<li class="relative flex flex-col gap-4 overflow-hidden border rounded-lg splide__slide border-secondary bg-primary" x-data="hover" @mouseover="setHover(true)" @mouseleave="setHover(false)">
 					{{ get_image_html(
             item.image,
             'w-full aspect-square sm:aspect-[3/4] object-cover object-center slide-img relative z-0'
@@ -32,7 +32,7 @@
 
 					<span class="absolute z-5 left-0 bottom-0 w-full transition-[height] duration-500 bg-linear-to-t from-dark-blue to-transparent" :class="hover ? 'h-full' : 'h-2/3'"></span>
 
-					<span class="absolute z-5 p-6 bottom-0">
+					<span class="absolute bottom-0 p-6 z-5">
 						<span class="h5">
 							{{ item.link.title}}
 						</span>
@@ -44,16 +44,16 @@
 		</ul>
 	</div>
 
-	<div class="wrapper flex justify-between items-center mt-8">
+	<div class="flex items-center justify-between mt-8 wrapper">
 		<ul class="splide__pagination"></ul>
 
-		<div class="splide__arrows relative text-right">
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--prev">
+		<div class="relative text-right splide__arrows">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--prev">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white"/>
 				</svg>
 			</button>
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--next">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--next">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
 				</svg>

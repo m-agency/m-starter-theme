@@ -1,89 +1,100 @@
-<section class="bg-dark-blue text-white py-12 md:py-24 xl:py-32">
+{% set use_packages = fields.use_packages %}
+{% set packages = use_packages ? get_posts(fields.packages) : fields.package_list %}
+
+<section class="py-12 text-white bg-dark-blue md:py-24 xl:py-32">
 	<div
 		x-data="tabs" class="wrapper">
 
 		<!-- Heading -->
-		<h2 class="h2 text-center mb-8">
+		<h2 class="mb-8 text-center h2">
 			{{ fields.heading }}
 		</h2>
 
 		<!-- Tabs -->
-		<div class="flex flex-wrap justify-center gap-6 mb-10 md:mb-12 xl:mb-24 text-sm sm:text-base">
-			{% for resource in get_posts(fields.packages) %}
-				<button class="border-b-2 pb-2 transition uppercase duration-300 font-medium" :class="tabClasses({{ loop.index0 }}, 'border-red text-white', 'border-transparent text-gray-400 hover:text-white')" @click="setActive({{ loop.index0 }})">
-					{{ resource.title }}
+		<div class="flex flex-wrap justify-center mb-10 text-sm gap-x-8 gap-y-4 lg:gap-x-12 md:mb-12 xl:mb-24 sm:text-base">
+			{% for package in packages %}
+				<button class="pb-2 font-medium uppercase transition duration-300 border-b-2" :class="tabClasses({{ loop.index0 }}, 'border-red text-white', 'border-transparent text-gray-400 hover:text-white')" @click="setActive({{ loop.index0 }})">
+					{{ package.title }}
 				</button>
 			{% endfor %}
 		</div>
 
 		<!-- Package Panels -->
 		<div class="relative">
-			{% for resource in get_posts(fields.packages) %}
+			{% for package in packages %}
 				<div
-					x-show="isActive({{ loop.index0 }})" x-transition class="flex flex-col md:flex-row gap-12 md:gap-16 xl:gap-32">
+					x-show="isActive({{ loop.index0 }})" x-transition class="flex flex-col items-stretch gap-12 md:flex-row md:gap-16 xl:gap-32">
 
 					<!-- Left: Image -->
-					<div class="w-full md:w-1/2 relative">
-						{% if resource.image %}
+					<div class="relative w-full md:w-1/2">
+						{% if package.image %}
 							<div class="sticky top-16">
-								{{ get_image_html(resource.image, 'rounded-xl w-full relative z-10 aspect-video md:aspect-square object-cover') }}
+								{{ get_image_html(package.image, 'rounded-xl w-full relative z-10 aspect-video md:aspect-square object-cover') }}
 								<div class="absolute bg-red inset-0 w-full aspect-video md:aspect-square transform translate-3.5 rounded-xl"></div>
 							</div>
 						{% endif %}
 					</div>
 
 					<!-- Right: Package Details -->
-					<div class="w-full md:w-1/2">
+					<div class="flex flex-col justify-center w-full md:w-1/2 sm:text-lg lg:text-xl">
 						<div class="flex flex-wrap items-center mb-2 gap-x-6 gap-y-2">
 							<h3 class="h3">
-								{{ resource.title }}
+								{{ package.title }}
 							</h3>
 
 							<!-- Group Size -->
-							{% if resource.meta('participant_capacity') %}
-								<div class="text-sm text-white mb-1 flex items-center gap-2 border border-light-blue px-4 py-2 rounded-full uppercase font-bold">
-									<svg class="h-4 w-4 text-gray-300" width="15" height="15" viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+							{% if package.participant_capacity and use_packages %}
+								<div class="flex items-center gap-2 px-4 py-2 mb-1 text-sm font-bold text-white uppercase border rounded-full border-light-blue">
+									<svg class="w-4 h-4 text-gray-300" width="15" height="15" viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.333496 14.6667C0.333496 11.7212 2.72131 9.33335 5.66683 9.33335C8.61236 9.33335 11.0002 11.7212 11.0002 14.6667H9.66683C9.66683 12.4576 7.87596 10.6667 5.66683 10.6667C3.45769 10.6667 1.66683 12.4576 1.66683 14.6667H0.333496ZM5.66683 8.66669C3.45683 8.66669 1.66683 6.87669 1.66683 4.66669C1.66683 2.45669 3.45683 0.666687 5.66683 0.666687C7.87683 0.666687 9.66683 2.45669 9.66683 4.66669C9.66683 6.87669 7.87683 8.66669 5.66683 8.66669ZM5.66683 7.33335C7.14016 7.33335 8.3335 6.14002 8.3335 4.66669C8.3335 3.19335 7.14016 2.00002 5.66683 2.00002C4.1935 2.00002 3.00016 3.19335 3.00016 4.66669C3.00016 6.14002 4.1935 7.33335 5.66683 7.33335ZM11.1893 9.80189C13.0431 10.6374 14.3335 12.5014 14.3335 14.6667H13.0002C13.0002 13.0427 12.0324 11.6448 10.642 11.0181L11.1893 9.80189ZM10.731 2.27549C12.0631 2.82471 13.0002 4.13576 13.0002 5.66669C13.0002 7.58015 11.5363 9.15015 9.66683 9.31842V7.97642C10.798 7.81482 11.6668 6.84269 11.6668 5.66669C11.6668 4.74625 11.1346 3.95071 10.3608 3.57092L10.731 2.27549Z" fill="white"/>
 									</svg>
 									{{ __('Group Size:', 'magency-theme') }}
-									{{ resource.meta('participant_capacity')}}
+									{{ package.participant_capacity }}
 								</div>
 							{% endif %}
 						</div>
 
-						<!-- Price -->
-						<div class="text-xl font-bold mt-4 flex items-center gap-x-4 gap-y-2 flex-wrap">
-							<span class="md:text-lg lg:text-xl xl:text-2xl">
-								{{ __('Price:', 'magency-theme') }}
-								${{ resource.display_price }}
-							</span>
-
-							{% if resource.note %}
-								<span class="inline-block uppercase px-4 py-1.5 text-xs bg-light-blue/40 text-light-blue rounded font-bold">
-									{{ resource.note }}
+						{% if use_packages %}
+							<!-- Price -->
+							<div class="flex flex-wrap items-center mt-4 text-xl font-bold gap-x-4 gap-y-2">
+								<span class="md:text-lg lg:text-xl xl:text-2xl">
+									{{ __('Price:', 'magency-theme') }}
+									${{ package.display_price }}
 								</span>
-							{% endif %}
-						</div>
+
+								{% if package.note %}
+									<span class="inline-block uppercase px-4 py-1.5 text-xs bg-light-blue/40 text-light-blue rounded font-bold">
+										{{ package.note }}
+									</span>
+								{% endif %}
+							</div>
+						{% endif %}
 
 						<!-- Excerpt -->
-						{% if resource.meta('excerpt') %}
-							<div class="font-bold text-white mt-4">
-								{{ resource.meta('excerpt') }}
+						{% if package.meta('excerpt') and use_packages %}
+							<div class="mt-4 font-bold text-white">
+								{{ package.meta('excerpt') }}
 							</div>
 						{% endif %}
 
 						<!-- Content -->
-						{% if resource.meta('details') %}
+						{% if package.details %}
 							<div class="mt-4 mb-2 text-white h5">{{ __('Package Details', 'magency-theme') }}</div>
-							<div class="wysiwyg text-white">
-								{{ resource.meta('details') }}
+							<div class="text-white wysiwyg">
+								{{ package.details }}
 							</div>
 						{% endif %}
 
 						<!-- CTA Button -->
-						<button type="button" class="book-party mt-6 btn btn-primary" data-resource-id="{{ resource.id }}">
-							{{ __('Book Your Party', 'magency-theme') }}
-						</a>
+						{% if use_packages %}
+							<button type="button" class="mt-6 book-party btn btn-primary" data-resource-id="{{ package.id }}">
+								{{ __('Book Your Party', 'magency-theme') }}
+							</button>
+						{% elseif package.button %}
+							<a href="{{ package.button.url }}" target="{{ package.button.target ?: '_self' }}" title="{{ package.button.title }}" class="mt-6 btn btn-primary">
+								{{ package.button.title }}
+							</a>
+						{% endif %}
 					</div>
 				</div>
 			{% endfor %}

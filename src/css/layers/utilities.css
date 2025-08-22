@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 @utility hxl {
-  font-size: 99px;
+  font-size: clamp(5rem, 8vw, 6.1875rem);
   line-height: 120%;
   font-family: var(--font-headline);
   text-transform: uppercase;
 }
 
 @utility h1 {
-  font-size: 99px;
+  font-size: clamp(5rem, 8vw, 7.4375rem);
   line-height: 110%;
   font-family: var(--font-headline);
   text-transform: uppercase;
 }
 
 @utility h2 {
-  font-size: 70px;
+  font-size: clamp(2.5rem, 8vw, 4.375rem);
   line-height: 120%;
   font-family: var(--font-headline);
   text-transform: uppercase;
 }
 
 @utility h3 {
-  font-size: 46px;
+  font-size: clamp(2.5625rem, 4vw, 3.125rem);
   line-height: 120%;
   font-family: var(--font-headline);
   text-transform: uppercase;
 }
 
 @utility h4 {
-  font-size: clamp(20px, 4vw, 32px);
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
   line-height: 120%;
   font-family: var(--font-headline);
   text-transform: uppercase;
@@ -64,7 +64,7 @@
   align-items: center;
   gap: 0.625rem;
   width: fit-content;
-  font-size: clamp(14px, 4vw, 16px);
+  font-size: clamp(14px, 7vw, 16px);
   letter-spacing: 1px;
   color: #fff;
   font-size: 16px;

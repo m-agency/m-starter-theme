@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const initializeBlock = () => {
-    if (document.querySelector('.link-slider') === null) return;
-    const slider = new window.splide('.link-slider', {
+    if (document.querySelector('.acf-link-slider') === null) return;
+    const slider = new window.splide('.acf-link-slider', {
       perPage: 3,
       padding: {
         left: 128,

@@ -1,6 +1,6 @@
-<section id="venue-slider" class="relative z-0 venue-slider splide bg-med-blue text-white py-12 lg:pt-32 lg:pb-48 {{ attributes.className }}">
+<section {{ anchor }} class="relative z-0 venue-slider splide bg-med-blue text-white py-12 lg:pt-32 lg:pb-48 {{ attributes.className }}">
 	{% if fields.heading %}
-		<div class="wrapper gap-8 mb-12 sm:mb-24 text-center z-2 relative">
+		<div class="relative gap-8 mb-12 text-center wrapper sm:mb-24 z-2">
 			<h2 class="h2">{{ fields.heading}}</h2>
 		</div>
 	{% endif %}
@@ -8,15 +8,15 @@
 	<div class="splide__track">
 		<ul class="splide__list">
 			{% for venue in get_posts(fields.venues) %}
-				<li class="splide__slide flex items-stretch justify-stretch">
-					<div class="splide__inner flex flex-col w-full lg:flex-row lg:items-stretch rounded-lg overflow-hidden relative border border-secondary bg-primary">
-						<div class="flex lg:items-center py-8 lg:py-20 xl:py-24 2xl:py-32 order-2 lg:order-1 lg:basis-1/2">
-							<div class="text-white text-sm md:text-base">
-								<h3 class="h3 mb-4 px-6 lg:px-8 2xl:px-10">
+				<li class="flex items-stretch splide__slide justify-stretch">
+					<div class="relative flex flex-col w-full overflow-hidden border rounded-lg splide__inner lg:flex-row lg:items-stretch border-secondary bg-primary">
+						<div class="flex order-2 py-8 lg:items-center lg:py-20 xl:py-24 2xl:py-32 lg:order-1 lg:basis-1/2">
+							<div class="text-sm text-white md:text-base">
+								<h3 class="px-6 mb-4 h3 lg:px-8 2xl:px-10">
 									{{ venue.title }}
 								</h4>
 
-								<div class="px-6 lg:px-8 2xl:px-10 flex gap-2 flex-col mb-4">
+								<div class="flex flex-col gap-2 px-6 mb-4 lg:px-8 2xl:px-10">
 									{% if venue.square_feet %}
 										<div>
 											<strong class="uppercase">{{ __('Square Feet:', 'magency-theme') }}&nbsp;</strong>
@@ -39,13 +39,13 @@
 									{% endif %}
 								</div>
 
-								<div class="wysiwyg max-h-96 overflow-auto px-6 lg:px-8 2xl:px-10">
+								<div class="px-6 overflow-auto wysiwyg max-h-96 lg:px-8 2xl:px-10 sm:text-lg">
 									{{ venue.excerpt }}
 								</div>
 							</div>
 						</div>
 
-						<div class="bg-dark-gray relative flex items-center justify-center h-64 lg:h-auto order-1 lg:order-2 lg:basis-1/2">
+						<div class="relative flex items-center justify-center order-1 h-64 bg-dark-gray lg:h-auto lg:order-2 lg:basis-1/2">
 							<span class="h4">Image coming soon...</span>
 							{{ get_image_html(venue.thumbnail.id, 'object-cover size-full absolute inset-0') }}
 						</div>
@@ -55,16 +55,16 @@
 		</ul>
 	</div>
 
-	<div class="wrapper flex justify-between items-center mt-8">
+	<div class="flex items-center justify-between mt-8 wrapper">
 		<ul class="splide__pagination"></ul>
 
-		<div class="splide__arrows relative text-right">
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--prev">
+		<div class="relative text-right splide__arrows">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--prev">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="white"/>
 				</svg>
 			</button>
-			<button class="rounded-full border border-secondary p-3 m-1 hover:bg-secondary transition-colors duration-300 splide__arrow splide__arrow--next">
+			<button class="p-3 m-1 transition-colors duration-300 border rounded-full border-secondary hover:bg-secondary splide__arrow splide__arrow--next">
 				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
 				</svg>

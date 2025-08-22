@@ -7,7 +7,6 @@
   "keywords": [
     "magency"
   ],
-  "style": "file:./block.css",
   "script": "file:./block.js",
   "acf": {
     "mode": "preview",

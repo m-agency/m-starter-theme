@@ -11,5 +11,8 @@
   "acf": {
     "mode": "preview",
     "renderCallback": "m_block_renderer"
+  },
+  "supports": {
+    "anchor": true
   }
 }

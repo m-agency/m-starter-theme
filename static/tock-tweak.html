@@ -1,0 +1,29 @@
+<style>
+  #main {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+
+  #main.fade-content {
+    opacity: 0;
+  }
+</style>
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    const bookingButtons = document.querySelectorAll('a[href$="#book-now"]');
+
+    bookingButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const main = document.querySelector('#main');
+        main.classList.add('fade-content');
+
+        document.querySelector('.TockButton').click();
+
+        setTimeout(() => {
+          main.classList.remove('fade-content');
+        }, 2000);
+      }, { passive: true });
+    });
+  });
+</script>

@@ -11,7 +11,7 @@
 			{% endif %}
 
 			{% if fields.subheading %}
-				<div class="wysiwyg mt-4 text-base sm:text-lg leading-relaxed">
+				<div class="wysiwyg mt-4 text-base sm:text-lg lg:text-xl leading-relaxed">
 					{{ fields.subheading }}
 				</div>
 			{% endif %}
@@ -34,7 +34,7 @@
 						</svg>
 					</button>
 
-					<div x-show="isOpened({{ loop.index0 }})" x-collapse class="mt-4 wysiwyg text-sm sm:text-base text-white/80 pr-6 md:pr-8 xl:pr-12">
+					<div x-show="isOpened({{ loop.index0 }})" x-collapse class="mt-4 wysiwyg text-sm sm:text-base lg:text-lg text-white/80 pr-6 md:pr-8 xl:pr-12">
 						{{ faq.content }}
 					</div>
 				</div>

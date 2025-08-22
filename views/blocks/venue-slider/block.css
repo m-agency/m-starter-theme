@@ -1,4 +1,4 @@
-#venue-slider {
+.venue-slider {
   .splide__inner {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }

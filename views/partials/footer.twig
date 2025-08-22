@@ -2,31 +2,31 @@
 	<div
 		class="wrapper flex flex-col divide-y z-1 relative" style="border-color: #585858;">
 		<!-- Top Section -->
-		<div class="flex flex-col items-center gap-12 pb-12 md:pb-16 md:gap-6 justify-center md:justify-between md:flex-row border-med-blue">
-			<div>
+		<div class="flex flex-col items-center gap-12 pb-12 md:pb-16 md:gap-8 justify-center md:justify-between md:flex-row border-med-blue">
+			<div class="text-center md:text-left">
 				<div class="h3 text-white">
 					{{ options.footer_form_header }}
 				</div>
-				<div class="text-white">
+				<div class="text-white sm:text-lg lg:text-xl">
 					{{ options.footer_form_subheader }}
 				</div>
 			</div>
-			<div id="subscription-form" class="w-full flex-1 flex justify-stretch md:justify-end">
+			<div id="subscription-form" class="w-full flex-1 sm:min-w-xs flex justify-stretch md:justify-end">
 				{{ function('gravity_form', options.footer_form, false, false) }}
 			</div>
 		</div>
 
 		<!-- Middle Section -->
-		<div class="py-12 md:py-16 flex flex-col xl:flex-row border-med-blue gap-6 divide-y sm:divide-x sm:divide-y-0">
-			<div class="flex justify-between flex-col sm:flex-row xl:flex-col gap-x-6 gap-y-12 sm:pr-6 md:pr-12 pb-12 sm:pb-0 text-center sm:text-left items-center md:items-start">
+		<div class="py-12 md:py-16 flex flex-col xl:flex-row border-med-blue gap-y-12 gap-x-6 divide-y sm:divide-x sm:divide-y-0">
+			<div class="flex justify-between flex-col sm:flex-row xl:flex-col gap-x-6 gap-y-12 text-center md:text-left items-center md:items-start">
 				<a href="/">
 					{{ get_image_html(options.footer_logo.id, 'w-64 xl:w-80 h-auto max-w-[135px]') }}
 				</a>
 				{% for location in options.footer_locations %}
 					<div class="flex gap-3 flex-1 sm:flex-none min-w-56 h-fit">
-						<div class="text-white flex flex-col gap-2">
+						<div class="text-white flex flex-col w-full gap-2">
 							<h5 class="h5">{{ location.heading }}</h5>
-							<div class="wysiwyg">
+							<div class="wysiwyg text-base leading-relaxed lg:text-lg lg:leading-loose">
 								{{ location.content }}
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 				{% endfor %}
 			</div>
 			<nav class="grow">
-				<ul class="flex flex-col sm:flex-row w-full flex-wrap gap-6 justify-between text-white text-center md:text-left">
+				<ul class="flex flex-col sm:flex-row w-full sm:flex-wrap gap-6 sm:gap-8 justify-between text-white text-center md:text-left">
 					{% for item in footer_menu.items %}
 						<li class="flex flex-col gap-3 flex-1 lg:flex-auto {{ item.classes | join(' ') }}">
 							<a href="{{ item.link }}" target="{{ item.target }}" title="{{ item.title }}" class="">
@@ -48,8 +48,14 @@
 								<ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="flex flex-col gap-2 md:gap-3">
 									{% for child in item.children %}
 										<li class="{{ child.classes | join(' ') }}">
-											<a href="{{ child.link }}" target="{{ child.target }}" title="{{ child.title }}" class="hover:text-primary transition-colors duration-200">
+											<a href="{{ child.link }}" target="{{ child.target }}" title="{{ child.title }}" class="hover:text-secondary transition-colors duration-200 flex items-center gap-2 justify-center md:justify-start sm:whitespace-nowrap lg:text-lg">
 												{{ child.title }}
+
+												{% if child.target == '_blank' %}
+													<svg class="shrink-0" width="18" height="19" viewbox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M7.5 4.88867V6.38867H3.75V14.6387H12V10.8887H13.5V15.3887C13.5 15.8029 13.1642 16.1387 12.75 16.1387H3C2.58579 16.1387 2.25 15.8029 2.25 15.3887V5.63867C2.25 5.22446 2.58579 4.88867 3 4.88867H7.5ZM15.75 2.63867V8.63867H14.25L14.2499 5.19842L8.40532 11.044L7.34467 9.98335L13.1887 4.13867H9.75V2.63867H15.75Z" fill="currentColor"/>
+													</svg>
+												{% endif %}
 											</a>
 										</li>
 									{% endfor %}
@@ -59,7 +65,7 @@
 					{% endfor %}
 
 					<li class="flex-1">
-						<ul class="flex flex-row 2xl:flex-col gap-2 md:gap-3 text-right justify-center md:justify-end">
+						<ul class="flex flex-col gap-4 items-center md:items-end">
 							<li>
 								{% if options.footer_button %}
 									<a href="{{ options.footer_button.url }}" title="{{ options.footer_button.title }}" target="{{ options.footer_button.target ? options.footer_button.target : '_self' }}" class="btn btn-primary">

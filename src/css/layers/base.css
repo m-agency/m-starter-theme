@@ -54,7 +54,6 @@
 
   body {
     font-family: var(--font-body);
-    font-size: 21px;
     background-color: var(--color-primary);
     margin: 0 auto;
     max-width: 1920px;

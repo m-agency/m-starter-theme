@@ -1,29 +1,18 @@
 {% include 'views/partials/time-banner.twig' %}
-<header
-	class="sticky top-0 left-0 z-40 w-full menu-theme menu-theme--{{ post.menu_theme }}"
-	x-data="header"
-  x-resize.document="checkForSmallScreen($width)"
->
-  <div class="wrapper">
-    <div
-      class="flex items-center justify-between gap-8 py-2 lg:py-4"
-      @click.away="toggleMenu(false)"
-    >
-      <a
-        href="{{ site.url }}"
-        title="{{ site.name }}"
-        class="relative block"
-      >
-        {% if logo %}
-          {{ get_image_html(logo, 'max-h-14 max-w-full sm:max-w-64 size-auto') }}
-        {% else %}
-          <span class="text-xl font-semibold xl:text-2xl">
-            {{ site.name }}
-          </span>
-        {% endif %}
-      </a>
+<header id="header" class="sticky top-0 left-0 z-50 w-full menu-theme menu-theme--{{ post.menu_theme }}" x-data="header" x-resize.document="checkForSmallScreen($width)">
+	<div class="wrapper">
+		<div class="flex items-center justify-between gap-8 py-2 lg:py-4" @click.away="toggleMenu(false)">
+			<a href="{{ site.url }}" title="{{ site.name }}" class="relative block">
+				{% if logo %}
+					{{ get_image_html(logo, 'max-h-14 max-w-full sm:max-w-64 size-auto') }}
+				{% else %}
+					<span class="text-xl font-semibold xl:text-2xl">
+						{{ site.name }}
+					</span>
+				{% endif %}
+			</a>
 
-      {% include "partials/menu-primary.twig" with { 'items': primary_menu.items } %}
-    </div>
-  </div>
+			{% include "partials/menu-primary.twig" with { 'items': primary_menu.items } %}
+		</div>
+	</div>
 </header>

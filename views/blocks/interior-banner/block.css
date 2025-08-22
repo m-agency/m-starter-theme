@@ -30,7 +30,7 @@
     }
 
     .interior-banner--heading {
-      font-size: clamp(4.3125rem, 8vw, 6.1875rem);
+      font-size: clamp(4.3125rem, 8vw, 7.4375rem);
       line-height: 110%;
     }
 
@@ -50,7 +50,7 @@
     }
 
     .interior-banner--heading {
-      font-size: clamp(4.25rem, 8vw, 5.5rem);
+      font-size: clamp(4.25rem, 8vw, 6.25rem);
       line-height: 110%;
     }
 

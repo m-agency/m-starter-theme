@@ -56,6 +56,9 @@ class M extends Site
 		add_filter('gform_pre_submission_filter', [$filters, 'populate_capacity_select']);
 		add_filter('gform_admin_pre_render', [$filters, 'populate_capacity_select']);
 
+		// Events Calendar Pro Filters
+		add_filter('tribe_events_pre_get_posts', [$filters, 'filter_tribe_all_occurences'], 100, 1);
+
 		parent::__construct();
 	}
 }

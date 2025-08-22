@@ -4,8 +4,11 @@
   "description": "A custom post slider block built for the M Agency theme.",
   "category": "M-blocks",
   "icon": "slides",
-  "keywords": ["magency", "posts", "slider"],
-  "style": "file:./block.css",
+  "keywords": [
+    "magency",
+    "posts",
+    "slider"
+  ],
   "script": "file:./block.js",
   "acf": {
     "mode": "preview",

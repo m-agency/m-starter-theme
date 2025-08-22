@@ -1,0 +1,24 @@
+<li class="border border-light-blue rounded-lg text-center p-8 {{ className ?: '' }}">
+	<div class="rating text-center mb-8">
+		{% for i in 1..item.rating %}
+			<img class="star inline-block" alt="" src="{{ theme.path ~ '/assets/images/star-icon.svg' }}" style="width:20px;">
+		{% endfor %}
+	</div>
+	<div class="font-bold italic text-xl">{{ item.comment }}</div>
+	<div class="flex flex-row items-center justify-center mt-8">
+		<div class="rounded-full size-14 flex items-center justify-center bg-red overflow-hidden">
+			{% if item.thumbnail %}
+				{{ get_image_html(item.thumbnail.id, 'rounded-full object-cover size-14') }}
+			{% else %}
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="size-32 -mb-5" role="img" aria-label="User silhouette" fill="currentColor">
+					<circle cx="12" cy="8" r="4"/>
+					<path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8H4z"/>
+				</svg>
+			{% endif %}
+		</div>
+		<div class="flex flex-col items-start justify-center text-left ml-4 pl-4 py-2 border-l border-l-med-blue">
+			<div class="font-bold">{{ item.title}}</div>
+			<div class="text-sm">{{ item.description }}</div>
+		</div>
+	</div>
+</li>

@@ -5,16 +5,22 @@
     border-color: #3d438c;
     border-radius: 5px;
 
-    &.gravity-theme .gform_footer {
-      @apply py-0 m-0;
+    &.gravity-theme {
+      .gform-body {
+        @apply grow;
+      }
 
-      .btn-submit {
-        @apply bg-primary text-white border-primary mb-0;
-        @apply after:bg-[url('../images/arrow-right.svg')];
+      .gform_footer {
+        @apply py-0 m-0;
 
-        &:after {
-          width: 25px;
-          height: 25px;
+        .btn-submit {
+          @apply bg-primary text-white border-primary mb-0;
+          @apply after:bg-[url('../images/arrow-right.svg')];
+
+          &:after {
+            width: 25px;
+            height: 25px;
+          }
         }
       }
     }
@@ -214,6 +220,10 @@
 
     .gpb-booking-time-picker {
       @apply max-w-full w-full;
+    }
+
+    .gpb-booking-time-picker__duration-picker {
+      @apply flex items-center gap-2;
     }
 
     .gpb-booking-time-picker__back,

@@ -1,134 +1,49 @@
-<ul
-  class="relative z-10 h-auto w-full xl:w-56 xl:absolute xl:-ml-12"
-  role="menu"
-  aria-orientation="vertical"
-  aria-labelledby="options-menu"
-  x-show="(!mobile && active) || (mobile && expanded)"
-  x-transition:enter="transition-opacity linear duration-500"
-  x-transition:enter-start="opacity-0"
-  x-transition:enter-end="opacity-100"
-  x-transition:leave="transition-opacity linear duration-500"
-  x-transition:leave-start="opacity-100"
-  x-transition:leave-end="opacity-0"
->
-  {% for child in children %}
-    <li
-      class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ child.classes | join(' ') }}"
-      x-data="childMenu"
-      @mouseover="setOpen(true)"
-      @mouseleave="setOpen(false)"
-    >
-      <a
-        href="{{ child.link }}"
-        target="{{ child.target }}"
-        title="{{ child.title }}"
-        class="flex items-center justify-between gap-2 xl:justify-start text-sm py-2"
-      >
-        <span class="txt">{{ child.title }}</span>
+<ul class="relative xl:-mt-1 z-10 h-auto w-full xl:w-56 xl:absolute xl:-ml-12" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" x-show="(!mobile && active) || (mobile && expanded)" x-transition:enter="transition-opacity linear duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity linear duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+	{% for child in children %}
+		<li class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ child.classes | join(' ') }}" x-data="childMenu" @mouseover="setOpen(true)" @mouseleave="setOpen(false)">
+			<a href="{{ child.link }}" target="{{ child.target }}" title="{{ child.title }}" class="flex items-center justify-between gap-2 xl:justify-start text-sm py-2">
+				<span class="txt">{{ child.title }}</span>
 
-        {% if child.children %}
-          <span class="icn" @click="($event) => openSubNav($event)">
-            <svg
-              class="w-5 h-5 transition-transform duration-100 transform"
-              :class="{
-                '-rotate-180': expanded,
-                'xl:rotate-90': pos === 'left',
-                'xl:-rotate-90': pos === 'right'
-              }"
-              xmlns="http://www.w3.org/2000/svg"
-              viewbox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-        {% endif %}
-      </a>
+				{% if child.children %}
+					<span class="icn" @click="($event) => openSubNav($event)">
+						<svg class="w-5 h-5 transition-transform duration-100 transform" :class="{ '-rotate-180': expanded, 'xl:rotate-90': pos === 'left', 'xl:-rotate-90': pos === 'right' }" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+						</svg>
+					</span>
+				{% endif %}
+			</a>
 
-      {% if child.children %}
-        <ul
-          class="submenu xl:absolute xl:z-40 xl:top-0 xl:w-56"
-          x-show="(!mobile && open) || (mobile && expanded)"
-          x-transition:enter="transition-opacity linear duration-500"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition-opacity linear duration-500"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-        >
-          {% for grandchild in child.children %}
-            <li
-              class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ grandchild.classes | join(' ') }}"
-              x-data="childMenu"
-              @mouseover="setOpen(true)"
-              @mouseleave="setOpen(false)"
-            >
-              <a
-                href="{{ grandchild.link }}"
-                target="{{ grandchild.target }}"
-                title="{{ grandchild.title }}"
-                class="flex items-center justify-between text-sm py-2 gap-2 xl:justify-start"
-              >
-                <span class="txt">{{ grandchild.title }}</span>
+			{% if child.children %}
+				<ul class="submenu xl:absolute xl:z-40 xl:top-0 xl:w-56" x-show="(!mobile && open) || (mobile && expanded)" x-transition:enter="transition-opacity linear duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity linear duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+					{% for grandchild in child.children %}
+						<li class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ grandchild.classes | join(' ') }}" x-data="childMenu" @mouseover="setOpen(true)" @mouseleave="setOpen(false)">
+							<a href="{{ grandchild.link }}" target="{{ grandchild.target }}" title="{{ grandchild.title }}" class="flex items-center justify-between text-sm py-2 gap-2 xl:justify-start">
+								<span class="txt">{{ grandchild.title }}</span>
 
-                {% if grandchild.children %}
-                  <span class="icn" @click="($event) => openSubNav($event)">
-                    <svg
-                      class="w-5 h-5 transition-transform duration-100 transform"
-                      :class="{
-                        '-rotate-180': expanded,
-                        'xl:rotate-90': pos === 'left',
-                        'xl:-rotate-90': pos === 'right'
-                      }"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewbox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                {% endif %}
-              </a>
+								{% if grandchild.children %}
+									<span class="icn" @click="($event) => openSubNav($event)">
+										<svg class="w-5 h-5 transition-transform duration-100 transform" :class="{ '-rotate-180': expanded, 'xl:rotate-90': pos === 'left', 'xl:-rotate-90': pos === 'right' }" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+											<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+										</svg>
+									</span>
+								{% endif %}
+							</a>
 
-              {% if grandchild.children %}
-                <ul
-                  class="submenu xl:z-50 xl:absolute xl:top-0 xl:w-56"
-                  x-show="(!mobile && open) || (mobile && expanded)"
-                  x-transition:enter="transition-opacity linear duration-500"
-                  x-transition:enter-start="opacity-0"
-                  x-transition:enter-end="opacity-100"
-                  x-transition:leave="transition-opacity linear duration-500"
-                  x-transition:leave-start="opacity-100"
-                  x-transition:leave-end="opacity-0"
-                >
-                  {% for greatgrandchild in grandchild.children %}
-                    <li class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ greatgrandchild.classes | join(' ') }}">
-                      <a
-                        href="{{ greatgrandchild.link }}"
-                        target="{{ greatgrandchild.target }}"
-                        title="{{ greatgrandchild.title }}"
-                        class="flex items-center justify-between text-sm py-2"
-                      >
-                        {{ greatgrandchild.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </li>
-  {% endfor %}
+							{% if grandchild.children %}
+								<ul class="submenu xl:z-50 xl:absolute xl:top-0 xl:w-56" x-show="(!mobile && open) || (mobile && expanded)" x-transition:enter="transition-opacity linear duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity linear duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+									{% for greatgrandchild in grandchild.children %}
+										<li class="relative w-full xl:px-6 first:xl:mt-3 xl:last:mb-3 {{ greatgrandchild.classes | join(' ') }}">
+											<a href="{{ greatgrandchild.link }}" target="{{ greatgrandchild.target }}" title="{{ greatgrandchild.title }}" class="flex items-center justify-between text-sm py-2">
+												{{ greatgrandchild.title }}
+											</a>
+										</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</li>
+	{% endfor %}
 </ul>

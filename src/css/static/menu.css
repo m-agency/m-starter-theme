@@ -1,16 +1,18 @@
 header {
   transform: all.5s;
 }
+
 header.scrolled {
   background-color: #030119;
 }
+
 /* General Menu Styles */
 .menu-theme {
   .menu-item {
     @apply text-white;
 
     a {
-      @apply border-b-2 border-transparent transition-colors duration-300;
+      @apply transition-colors duration-300 border-b-2 border-transparent;
     }
 
     .submenu {
@@ -19,7 +21,7 @@ header.scrolled {
 
     &.current-menu-item {
       a {
-        @apply border-white;
+        @apply xl:border-white;
       }
 
       ul a {
@@ -52,28 +54,32 @@ header.scrolled {
 /* Primary Menu */
 .menu-theme--primary {
   .menu-item {
-    @apply lg:text-white/100;
+    @apply text-white;
     font-family: var(--font-body-bold);
+
     a {
       @apply xl:border-transparent hover:xl:border-red;
     }
 
-    &.current-menu-item a,
+    &.current-menu-item > a,
     &.current-page-ancestor > a {
-      @apply xl:border-secondary;
-      font-weight: 800;
+      @apply font-extrabold text-light-blue xl:text-white xl:border-secondary;
     }
 
     ul {
-      @apply xl:bg-secondary xl:border-x xl:border-y-2 xl:border-primary;
+      @apply xl:bg-dark-blue xl:border-x xl:border-y-2 xl:border-primary xl:rounded-2xl;
 
       a {
-        @apply xl:text-primary xl:border-transparent hover:xl:border-red;
+        @apply text-white hover:text-light-blue hover:border-transparent;
       }
 
-      a.current-menu-item {
-        @apply xl:border-primary;
+      .current-menu-item a {
+        @apply border-transparent text-light-blue;
       }
+    }
+
+    &.current-menu-item .current-menu-item > a {
+      @apply text-white hover:text-light-blue;
     }
   }
 }
@@ -111,6 +117,10 @@ header.scrolled {
 #footer {
   .current-menu-item > a,
   .current-page-item > a {
+    @apply text-secondary;
+  }
+
+  .current-menu-item .current-menu-item > a {
     @apply text-white;
   }
 }

@@ -4,9 +4,11 @@
   "description": "A custom banner block built for the M Agency theme.",
   "category": "M-blocks",
   "icon": "cover-image",
-  "keywords": ["magency", "banner"],
+  "keywords": [
+    "magency",
+    "banner"
+  ],
   "style": "file:./block.css",
-  "script": "file:./block.js",
   "acf": {
     "mode": "preview",
     "renderCallback": "m_block_renderer"
